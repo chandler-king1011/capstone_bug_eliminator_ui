@@ -1,0 +1,16 @@
+.header {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h1 {
+        color: white;
+    }
+
+    .header_links {
+        .header_link {
+            color: white;
+        }
+    }
+}

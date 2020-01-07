@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 import { Router, Switch, Route } from "react-router-dom";
 
 
@@ -10,17 +11,21 @@ import "./style/main.scss";
 
 import history from "./history";
 import Login from "./components/auth/login";
+import SignUp from "./components/auth/signUp";
 
-const createStoreWithMiddleware = applyMiddleware()((window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => F)(createStore));
+
+const middleware = [thunk];
+const store = createStore(reducers, compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 
 
 function main() {
   ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={store}>
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={Login} />
+          <Route path="/register"  component={SignUp} />
         </Switch>
       </Router>
     </Provider>,

@@ -8,11 +8,11 @@ class LoginForm extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        let user = {
+        let userCredentials = {
             email: e.target[0].value,
             password: e.target[1].value
         };
-        actions.login(user);
+        actions.login(userCredentials);
     }
 
     render() {
@@ -43,6 +43,9 @@ class LoginForm extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    user: state.userReducer.user
+});
 
-LoginForm = connect(null, actions)(LoginForm);
-export default LoginForm;
+
+export default connect(mapStateToProps, actions)(LoginForm);
