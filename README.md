@@ -1,5 +1,3 @@
-# React/Redux/Router Starter Project
+# Capstone Bug Eliminator UI
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
-
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+This is a UI for my bottega capstone bug eliminator project. It was built using react/redux. 
