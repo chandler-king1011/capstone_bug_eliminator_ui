@@ -1,3 +1,11 @@
+@import './variables.scss';
+@import './header.scss';
+@import './footer.scss';
+@import './auth/login-page.scss';
+@import './auth/login-form.scss';
+
+
+
 html {
     font-size: 62.5%; // 1rem is 10px
 }
@@ -12,6 +20,7 @@ html {
 }
 
 body {
+    background-color: $white;
     overflow-x: hidden;
     font-weight: normal;
 
@@ -27,4 +36,4 @@ body {
     justify-items: center;
 }
 
-@import './header.scss';
+

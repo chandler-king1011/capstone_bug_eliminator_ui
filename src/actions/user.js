@@ -2,7 +2,10 @@ import axios from 'axios';
 
 import { LOGIN_USER } from './types';
 
-export const login = (userCredentials) => dispatch => {
+export function login(userCredentials) {
+    console.log("hi");
+    return function(dispatch) {
+    console.log("Bye");
     axios.post("https://api-capstone-bug-tracker.herokuapp.com/users/login", userCredentials)
         .then(response => {
             if (response.data.status  === 200) {
@@ -17,4 +20,5 @@ export const login = (userCredentials) => dispatch => {
     }).catch(error => {
         console.log(error);
     });
+ }
 }
