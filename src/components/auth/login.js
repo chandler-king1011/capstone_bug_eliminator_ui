@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 
+import * as actions from "../../actions"
 import Header from '../header';
 import Footer from '../footer';
 import LoginForm from './loginForm';
 import history from '../../history';
 
-export default class Login extends Component {
+class Login extends Component {
+
+  constructor() {
+    super();
+
+    this.handleLoginSubmit=this.handleLoginSubmit.bind(this);
+  }
+
+  handleLoginSubmit(userCredentials) {
+    this.props.login(userCredentials);
+    console.log(userCredentials);
+  }
+
   render() {
     return (
       <div className='login-page'>
@@ -20,10 +34,20 @@ export default class Login extends Component {
               <button>Recover Password</button>
             </div>
           </div>
-          <LoginForm />
+          <LoginForm handleLoginSubmit={this.handleLoginSubmit} loginErrorText={this.props.loginErrorText} />
         </div>
         <Footer />
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { loginErrorText } = state.userReducer;
+  return {
+    loginErrorText 
+  }
+}
+
+
+export default connect(mapStateToProps, actions)(Login);

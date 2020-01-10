@@ -12,10 +12,12 @@ import "./style/main.scss";
 import history from "./history";
 import Login from "./components/auth/login";
 import SignUp from "./components/auth/signUp";
+import DashBoard from "./components/dashboard/dashboard";
 
 
 const middleware = [thunk];
 const store = createStore(reducers, compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+
 
 
 
@@ -26,6 +28,7 @@ function main() {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/register"  component={SignUp} />
+          <Route path="/user-dashboard" component={DashBoard} />
         </Switch>
       </Router>
     </Provider>,

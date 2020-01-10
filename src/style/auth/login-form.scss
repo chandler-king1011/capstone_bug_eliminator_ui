@@ -19,6 +19,12 @@
             border-bottom: 2px $red solid;
         }
     }
+
+    .login-form__error-text {
+        color: $red;
+        font-size: 1.5em;
+        font-family: $paragraph
+    }
     .login-form__form {
         height: 200px;
         display: flex;
@@ -31,7 +37,7 @@
             height: 35px;
             border: none;
             border-radius: 25px;
-            color: $white;
+            color: $silver;
             font-family: $paragraph;
 
             &:placeholder-shown{
