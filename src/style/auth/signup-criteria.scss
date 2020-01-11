@@ -1,0 +1,34 @@
+.signup__criteria {
+    border-radius: 10px;
+    background-color: $black;
+    height: 600px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .password-criteria__title {
+        text-align: center;
+        width: 600px;
+        padding-bottom: 15px;
+        color: $white;
+        font-size: 2em;
+        font-family: $header;
+        border-bottom: 2px $red solid;
+    }
+
+    ul {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        li {
+            font-size: 2em;
+            color: $white;
+            font-family: $paragraph;
+        }
+    }
+
+}

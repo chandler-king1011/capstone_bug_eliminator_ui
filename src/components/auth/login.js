@@ -23,7 +23,7 @@ class Login extends Component {
   render() {
     return (
       <div className='login-page'>
-        <Header />
+        <Header linkOneName="Learn More" linkTwo="/register" linkTwoName="Not registered? Sign Up!" />
         <div className="login-page__content-wrapper">
           <div className="login-page__left-wrapper">
             <div className="login-page__intro">

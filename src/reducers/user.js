@@ -1,9 +1,11 @@
-import { LOGIN_USER, WRONG_LOGIN_CREDENTIALS } from '../actions/types';
+import { LOGIN_USER, WRONG_LOGIN_CREDENTIALS, REGISTER_USER, REGISTER_FAILED } from '../actions/types';
 
 const initialState = {
     user: {},
     loginErrorText: "",
-    LOGGED_IN: false
+    LOGGED_IN: false,
+    userSuccessMessage: "",
+    userFailureMessage: ""
 }
 
 export default function(state=initialState, action) {
@@ -19,6 +21,18 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 loginErrorText: action.payload
+            }
+        case REGISTER_USER:
+            return {
+                ...state,
+                userSuccessMessage: action.payload.userSuccessMessage
+            }
+
+
+        case REGISTER_FAILED: 
+            return {
+                ...state,
+                userFailureMessage: action.payload.userFailureMessage
             }
 
         default: 

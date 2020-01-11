@@ -1,5 +1,6 @@
-import { login } from './user';
+import { login, register } from './user';
 
 export {
-    login
+    login,
+    register
 }
