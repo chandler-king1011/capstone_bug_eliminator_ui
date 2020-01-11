@@ -11,7 +11,10 @@ export function login(userCredentials) {
             if (response.data.status  === 200) {
                 dispatch({
                     type: LOGIN_USER,
-                    payload: response.data.results
+                    payload: {
+                        userData: response.data.results,
+                        authToken: response.data.token
+                    }
                 });
                 history.push("/user-dashboard");
 

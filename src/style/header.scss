@@ -5,8 +5,10 @@
     justify-content: space-between;
     align-items: center;
 
-    .header__img {
+    .header__icon {
         margin-left: 15px;
+        color: $red;
+        font-size: 3em;
     }
     
     h1 {

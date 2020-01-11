@@ -1,0 +1,48 @@
+.dashboard__navbar {
+    display: flex;
+    align-items: center;
+    background-color: $grey;
+    border-top: solid 1px $silver;
+    border-bottom: solid 1px $silver;
+
+    .navbar-link {
+        width: 100%;
+        padding: 15px;
+        border-right: solid 1px $silver;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+
+        &:nth-child(5) {
+            border-right: 0px;
+        }
+
+        .navbar-link__icon{
+            color: $silver;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            transition: 0.3s ease-in-out;
+        }
+        .navbar-link__title{
+            font-size: 2em;
+            font-family: $paragraph;
+            color: $silver;
+            transition: 0.3s ease-in-out;
+        }
+
+        &:hover {
+            .navbar-link__icon{
+                color: $white;
+
+            }
+            .navbar-link__title{
+                color: $white;
+            }
+        }
+    }
+
+
+}

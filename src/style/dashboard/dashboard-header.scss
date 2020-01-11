@@ -1,0 +1,22 @@
+.dashboard__header {
+    .header__icon {
+        color: $red;
+    }
+
+    .header__middle-wrapper {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        
+        .header__page-title {
+            font-size: 2em;
+            font-family: $header;
+            color: $white;
+        }
+    }
+
+    
+}

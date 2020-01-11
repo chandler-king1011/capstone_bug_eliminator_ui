@@ -17,7 +17,6 @@ class Login extends Component {
 
   handleLoginSubmit(userCredentials) {
     this.props.login(userCredentials);
-    console.log(userCredentials);
   }
 
   render() {

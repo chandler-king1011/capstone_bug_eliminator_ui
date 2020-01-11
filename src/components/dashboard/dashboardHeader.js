@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import history from '../history'
+import history from '../../history';
 
-class Header extends Component {
+class DashboardHeader extends Component {
     constructor(props) {
         super(props);
     }
 
   render() {
-    const { linkOne, linkOneName, linkTwo, linkTwoName } = this.props;
+    const { className, linkOne, linkOneName, linkTwo, linkTwoName } = this.props;
 
     return(
-        <div className="header">
+        <div className={`header ${className}`}>
             <FontAwesomeIcon icon={"bug"} className="header__icon"/>
-            <h1 className="header_title">Bug Eliminator</h1>
+            <div className="header__middle-wrapper">
+                <h1 className="header__title">Bug Eliminator</h1>
+                <h3 className="header__page-title">Dashboard</h3>
+            </div>
             <div className="header_links">
                 <a className="header_link" onClick={() => history.push(`${linkOne}`)}>{linkOneName}</a>
                 <a className="header_link" onClick={() => history.push(`${linkTwo}`)}>{linkTwoName}</a>
@@ -24,4 +27,4 @@ class Header extends Component {
 }
 }
 
-export default Header;
+export default DashboardHeader;

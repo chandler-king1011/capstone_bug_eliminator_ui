@@ -2,6 +2,7 @@ import { LOGIN_USER, WRONG_LOGIN_CREDENTIALS, REGISTER_USER, REGISTER_FAILED } f
 
 const initialState = {
     user: {},
+    userToken: "",
     loginErrorText: "",
     LOGGED_IN: false,
     userSuccessMessage: "",
@@ -13,7 +14,8 @@ export default function(state=initialState, action) {
         case LOGIN_USER:
             return {
                 ...state,
-                user: action.payload,
+                user: action.payload.userData,
+                userToken: action.payload.authToken,
                 LOGGED_IN: true,
                 loginErrorText: ""
             }
