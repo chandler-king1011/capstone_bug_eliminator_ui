@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Router, Switch, Route } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
@@ -24,12 +26,13 @@ import SearchBugs from "./components/bugs/searchBugs";
 const middleware = [thunk];
 const store = createStore(reducers, compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
-
+const persistor = persistStore(store);
 
 
 function main() {
   ReactDOM.render(
     <Provider store={store}>
+      <PersistGate persistor={persistor}>
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={Login} />
@@ -39,6 +42,7 @@ function main() {
           <Route path="/search-bugs" component={SearchBugs} />
         </Switch>
       </Router>
+      </PersistGate>
     </Provider>,
     document.querySelector(".app-wrapper")
   );

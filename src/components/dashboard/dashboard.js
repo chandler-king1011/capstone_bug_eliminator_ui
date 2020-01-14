@@ -11,6 +11,12 @@ class DashBoard extends Component {
   constructor() {
   super();
 }
+
+  componentDidMount() {
+    this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
+  }
+
+
   render() {
     return(
         <div>
@@ -34,9 +40,10 @@ class DashBoard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user } = state.userReducer;
+  const { user, userToken } = state.userReducer;
   return {
-    user
+    user,
+    userToken
   }
 
 }
