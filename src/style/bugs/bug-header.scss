@@ -1,0 +1,22 @@
+.bug-header {
+    margin-top: 10px;
+    padding: 20px;
+    width: 50vw;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-family: $paragraph;
+    font-size: 1.75em;
+    font-weight: 500;
+
+    border-radius: 5px;
+    border-bottom: 3px solid $red;
+    background-color: $black;
+    color: $silver;
+
+    :nth-child() {
+        border-bottom: 1px solid $silver;
+    }
+}

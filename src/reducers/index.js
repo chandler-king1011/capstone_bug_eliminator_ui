@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import userReducer from "./user";
+import bugReducer from './bug';
 
 
 const persistConfig = {
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   userReducer,
+  bugReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

@@ -6,13 +6,15 @@ import history from '../../history';
 
 import DashboardHeader from './dashboardHeader';
 import DashboardNavbar from './dashboardNavbar';
+import bugHeader from './dashboardBugHeader';
+import BugTag from '../bugs/bugTag';
 
 class DashBoard extends Component {
   constructor() {
   super();
 }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
   }
 
@@ -27,13 +29,24 @@ class DashBoard extends Component {
           />
           <DashboardNavbar
             links = {[
-              {id: 1, title: "My Active Bugs", onClick: () => console.log("My Active bugs"), icon: "user"},
+              {id: 1, title: `My Active Bugs (${this.props.userBugs.length})`, onClick: () => this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken), icon: "user"},
               {id: 2, title: "All Bugs", onClick: () => console.log("All Bugs"), icon: "users"},
               {id: 3, title: "Report a Bug", onClick: () => history.push("/report-bug"), icon: "bug"},
               {id: 4, title: "Search Bugs", onClick: () => history.push("/search-bugs"), icon: "search"}
             ]}
             joinOrg = {this.props.user.users_organization_id === null ? true : false}
-          />          
+          /> 
+          <div className="dash-board__body-wrapper">
+            {bugHeader()}
+            {this.props.userBugs.length > 0 ?
+              this.props.userBugs.map(bug => {
+                return(
+                <BugTag key={bug.bugs_id} bug={bug} /> 
+                )
+              })
+             : null}
+          </div>
+
         </div>
     )
 }
@@ -41,11 +54,12 @@ class DashBoard extends Component {
 
 const mapStateToProps = (state) => {
   const { user, userToken } = state.userReducer;
+  const { userBugs } = state.bugReducer;
   return {
     user,
-    userToken
+    userToken,
+    userBugs
   }
-
 }
 
 export default connect(mapStateToProps, actions)(DashBoard);

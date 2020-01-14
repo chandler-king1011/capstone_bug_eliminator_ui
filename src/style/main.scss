@@ -6,8 +6,12 @@
 @import './auth/signup.scss';
 @import './auth/signup-form.scss';
 @import './auth/signup-criteria.scss';
+@import './dashboard/dashboard.scss';
 @import './dashboard/dashboard-header.scss';
 @import './dashboard/dashboard-navbar.scss';
+@import './bugs/bug-tag.scss';
+@import './bugs/bug-header.scss';
+
 
 
 
@@ -21,7 +25,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    font-family: 'montserrat';
+    font-family: $paragraph;
 }
 
 body {
