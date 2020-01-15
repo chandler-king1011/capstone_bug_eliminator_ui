@@ -1,4 +1,4 @@
-import { FETCH_USER_BUGS } from '../actions/types';
+import { FETCH_USER_BUGS, FETCH_ORGANIZATION_BUGS } from '../actions/types';
 
 const initialState = {
     userBugs: [],
@@ -11,6 +11,11 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 userBugs: action.payload
+            }
+        case FETCH_ORGANIZATION_BUGS:
+            return {
+                ...state,
+                organizationBugs: action.payload
             }
         default: 
             return state

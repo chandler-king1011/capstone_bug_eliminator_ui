@@ -3,4 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+
+    .dash-board__no-bugs {
+        font-size: 2em;
+        font-weight: 600;
+        font-family: $header;
+        color: $black;
+        margin-top: 15px;
+    }
 }

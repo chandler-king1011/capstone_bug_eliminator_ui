@@ -19,6 +19,7 @@ import history from "./history";
 import Login from "./components/auth/login";
 import SignUp from "./components/auth/signUp";
 import DashBoard from "./components/dashboard/dashboard";
+import AllBugsDash from "./components/dashboard/allBugsDash";
 import ReportBug from "./components/bugs/reportBug";
 import SearchBugs from "./components/bugs/searchBugs";
 
@@ -38,6 +39,7 @@ function main() {
           <Route path="/" exact component={Login} />
           <Route path="/register"  component={SignUp} />
           <Route path="/user-dashboard" component={DashBoard} />
+          <Route path="/organization-dashboard" component={AllBugsDash} />
           <Route path="/report-bug" component={ReportBug} />
           <Route path="/search-bugs" component={SearchBugs} />
         </Switch>

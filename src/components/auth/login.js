@@ -19,6 +19,13 @@ class Login extends Component {
     this.props.login(userCredentials);
   }
 
+  componentWillMount() {
+    if (this.props.userToken != "") {
+      history.push('/user-dashboard');
+    }
+
+  }
+
   render() {
     return (
       <div className='login-page'>
@@ -42,9 +49,10 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { loginErrorText } = state.userReducer;
+  const { loginErrorText, userToken } = state.userReducer;
   return {
-    loginErrorText 
+    loginErrorText,
+    userToken
   }
 }
 

@@ -8,7 +8,6 @@ class DashboardNavbar extends Component {
 }
   render() {
     const {links, joinOrg} = this.props;
-    console.log(joinOrg);
     return(
         <div className="dashboard__navbar">
            {links.map(link => {
