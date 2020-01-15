@@ -1,0 +1,15 @@
+.bug-detail-header {
+    height: 89px;
+    background-color: $grey;
+    display: flex;
+    align-items: center;
+    .bug-detail-header__title{
+        margin-left: 10px;
+        font-size: 2.5em;
+        font-weight: 600;
+        font-family: $header;
+        color: $silver;
+
+    }
+
+}

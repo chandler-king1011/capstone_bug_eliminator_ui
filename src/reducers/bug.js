@@ -1,8 +1,14 @@
-import { FETCH_USER_BUGS, FETCH_ORGANIZATION_BUGS } from '../actions/types';
+import { 
+    FETCH_USER_BUGS, 
+    FETCH_ORGANIZATION_BUGS, 
+    FETCH_CURRENT_BUG, 
+    REMOVE_CURRENT_BUG
+ } from '../actions/types';
 
 const initialState = {
     userBugs: [],
-    organizationBugs: []
+    organizationBugs: [],
+    currentBug: {}
 }
 
 export default function(state=initialState, action) {
@@ -17,6 +23,16 @@ export default function(state=initialState, action) {
                 ...state,
                 organizationBugs: action.payload
             }
+        case FETCH_CURRENT_BUG: 
+            return{
+                ...state,
+                currentBug: action.payload
+           }
+        case REMOVE_CURRENT_BUG: 
+           return{
+               ...state,
+               currentBug: action.payload
+           }
         default: 
             return state
     }

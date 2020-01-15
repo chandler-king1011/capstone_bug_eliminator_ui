@@ -7,9 +7,9 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Router, Switch, Route } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import {faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinner} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt );
+library.add(faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinner );
 
 
 import reducers from "./reducers";
@@ -22,6 +22,7 @@ import DashBoard from "./components/dashboard/dashboard";
 import AllBugsDash from "./components/dashboard/allBugsDash";
 import ReportBug from "./components/bugs/reportBug";
 import SearchBugs from "./components/bugs/searchBugs";
+import BugDetail from "./components/bugs/bugDetail";
 
 
 const middleware = [thunk];
@@ -40,6 +41,7 @@ function main() {
           <Route path="/register"  component={SignUp} />
           <Route path="/user-dashboard" component={DashBoard} />
           <Route path="/organization-dashboard" component={AllBugsDash} />
+          <Route path="/bug-detail/:slug" component={BugDetail}/>
           <Route path="/report-bug" component={ReportBug} />
           <Route path="/search-bugs" component={SearchBugs} />
         </Switch>

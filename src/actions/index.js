@@ -1,9 +1,16 @@
 import { login, register } from './user';
-import { fetchUserBugs, fetchOrganizationBugs } from './bug';
+import { 
+    fetchUserBugs, 
+    fetchOrganizationBugs, 
+    fetchCurrentBug,
+    removeCurrentBug 
+} from './bug';
 
 export {
     login,
     register,
     fetchUserBugs,
-    fetchOrganizationBugs
+    fetchOrganizationBugs,
+    fetchCurrentBug,
+    removeCurrentBug
 }
