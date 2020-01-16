@@ -5,14 +5,16 @@ class Sidebar extends Component {
   super(props);
 }
   render() {
-    const {bug} = this.props;
+    const {bug, currentUserRole} = this.props;
     
     return(
         <div className="sidebar">
+          <div className="sidebar__top">
+            <h1 className="sidebar__header">Bug Details</h1>
             <ul className="sidebar__details">
                 <li className="sidebar__assigned">
                     <div className="sidebar__label">Assigned To:</div>
-                    <div className="sidebar__value">{bug.bugs_assigned_id}</div>
+                    <div className="sidebar__value">{`${bug.users_first_name} ${bug.users_last_name}`}</div>
                 </li>
                 <li className="sidebar__created">
                     <div className="sidebar__label">Date Created</div>
@@ -31,9 +33,15 @@ class Sidebar extends Component {
                     <div className="sidebar__value">{bug.bugs_replicable}</div>
                 </li>
             </ul>
+          </div>
 
             <div className="sidebar__buttons">
-                buttons
+                {currentUserRole == "Admin" ?
+                <button onClick={() => console.log("Reassign")} className="sidebar__button-reassign">Reassign</button> :
+                null}
+                <button onClick={() => console.log("severity")} className="sidebar__button-severity">Change Severity</button>
+                <button onClick={() => console.log("status")} className="sidebar__button-status">Change Status</button>
+                <button onClick={() => console.log("resolve")} className="sidebar__button-status">Resolve Bug</button>
             </div>
         </div>
     )

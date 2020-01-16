@@ -34,7 +34,7 @@ class BugDetail extends Component {
             />
             <BugDetailHeader className="bug-detail__bug-header" bugTitle={this.props.currentBug.bugs_title}/>
             <div className="bug-detail__body-wrapper">
-                <Sidebar bug={this.props.currentBug}/>
+                <Sidebar bug={this.props.currentBug} currentUserRole={this.props.user.users_role}/>
                 <div className="bug-detail__description-comments">
                     <div className="bug-detail__description">{this.props.currentBug.bugs_description}</div>
                     <div>comments</div>
@@ -51,11 +51,12 @@ class BugDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { userToken } = state.userReducer;
+    const { userToken, user } = state.userReducer;
     const { currentBug } = state.bugReducer;
     return {
         userToken,
-        currentBug
+        currentBug,
+        user
     }
 }
 
