@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { 
+    LOGOUT_USER,
     FETCH_USER_BUGS, 
     FETCH_ORGANIZATION_BUGS, 
     FETCH_CURRENT_BUG, 
@@ -66,4 +67,13 @@ export function removeCurrentBug() {
         payload: {}
     });
   }
+}
+
+export function clearBugsLogout() {
+    return function(dispatch) {
+        dispatch({
+            type: LOGOUT_USER,
+            payload: {}
+        })
+    }
 }

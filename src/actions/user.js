@@ -2,7 +2,13 @@ import axios from 'axios';
 
 import history from '../history';
 
-import { LOGIN_USER, WRONG_LOGIN_CREDENTIALS, REGISTER_USER, REGISTER_FAILED} from './types';
+import { 
+    LOGIN_USER,
+    LOGOUT_USER,
+    WRONG_LOGIN_CREDENTIALS,
+    REGISTER_USER, 
+    REGISTER_FAILED
+} from './types';
 
 export function login(userCredentials) {
     return function(dispatch) {
@@ -32,6 +38,16 @@ export function login(userCredentials) {
         });
     });
  }
+}
+
+export function logout(){
+    return function(dispatch) {
+        dispatch({
+            type: LOGOUT_USER,
+            payload: {}
+        })
+        history.push("/");
+    }
 }
 
 export function register(userObject) {

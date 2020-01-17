@@ -1,5 +1,5 @@
 .sidebar {
-    width: 200px;
+    width: 300px;
     height:calc(100vh - 199px);
     display: grid;
     grid-template-columns: 1fr;
@@ -12,17 +12,17 @@
     .sidebar__top{
         height: 175px;
         color: $white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         .sidebar__header{
+            margin-top: 25px;
             font-family: $header;
+            text-align: center;
+            
         }
         .sidebar__details{
             padding: 0px;
             height: 200px;
-            
             font-family: $paragraph;
+            font-size: 1.5em;
 
             li {
 
@@ -30,17 +30,16 @@
                 border-bottom: 1px solid $red;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                grid-gap: 60px;
                 
                 
 
                 .sidebar__label {
-                    justify-self: right;
+                    justify-self: left;
                     
 
                 }
                 .sidebar__value {
-                    justify-self: left;
+                    justify-self: right;
                 
                     
                 }
@@ -50,10 +49,62 @@
 
     .sidebar__buttons {
         align-self: center;
-        height: 175px;
+        height: 375px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        
+        .sidebar-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            font-family: $paragraph;
+            font-size: 1.5em;
+            background-color: $red;
+            color: $white;
+            border: none;
+            border-bottom: 1px solid $black;
+            transition: ease-in-out 0.3s;
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+            }
+
+            &:hover {
+                background-color: $grey;
+            }
+        }
+    }
+
+    .sidebar-options {
+        height: 0px;
+        overflow: hidden;
+        color: $white;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 1.2em;
+        font-family: $paragraph; 
+        transition: 0.3s ease-in-out;
+
+        .sidebar-option{
+            align-self: center;
+            justify-self: center;
+            cursor: pointer;
+
+            &:hover {
+                color: $silver;
+            }
+        }
+        div {
+            color: $red;
+            align-self: center;
+            justify-self: center;
+        }
+
+    }
+    .sidebar-options__visible {
+        height: 70px;
     }
 
 

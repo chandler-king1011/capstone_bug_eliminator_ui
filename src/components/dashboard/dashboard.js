@@ -27,7 +27,7 @@ class DashBoard extends Component {
             pageTitle="Dashboard"
             className="dashboard__header"   
             linkOneName="Bug Tips?"
-            linkTwoName="Log Out"
+            logOut={() =>this.props.logout()}
           />
           <DashboardNavbar
             links = {[

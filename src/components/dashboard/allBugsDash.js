@@ -24,9 +24,10 @@ componentWillMount() {
     return(
         <div>
           <DashboardHeader
+            pageTitle="Dashboard"
             className="dashboard__header"   
             linkOneName="Bug Tips?"
-            linkTwoName="Log Out"
+            logOut={() =>this.props.logout()}
           />
           <DashboardNavbar
             links = {[

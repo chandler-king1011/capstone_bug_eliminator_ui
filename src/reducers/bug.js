@@ -2,7 +2,8 @@ import {
     FETCH_USER_BUGS, 
     FETCH_ORGANIZATION_BUGS, 
     FETCH_CURRENT_BUG, 
-    REMOVE_CURRENT_BUG
+    REMOVE_CURRENT_BUG,
+    LOGOUT_USER
  } from '../actions/types';
 
 const initialState = {
@@ -33,6 +34,13 @@ export default function(state=initialState, action) {
                ...state,
                currentBug: action.payload
            }
+        case LOGOUT_USER:
+            return {
+                ...state,
+                userBugs: [],
+                organizationBugs: [],
+                currentBug: {}
+            }
         default: 
             return state
     }

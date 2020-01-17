@@ -30,7 +30,7 @@ class BugDetail extends Component {
                 className="bug-detail__header"   
                 linkOne="/user-dashboard"
                 linkOneName="Back To Dashboard"
-                linkTwoName="Log Out"
+                logOut={() =>this.props.logout()}
             />
             <BugDetailHeader className="bug-detail__bug-header" bugTitle={this.props.currentBug.bugs_title}/>
             <div className="bug-detail__body-wrapper">

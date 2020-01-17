@@ -1,4 +1,8 @@
-import { login, register } from './user';
+import { 
+    login,
+    logout,
+    register
+} from './user';
 import { 
     fetchUserBugs, 
     fetchOrganizationBugs, 
@@ -8,6 +12,7 @@ import {
 
 export {
     login,
+    logout,
     register,
     fetchUserBugs,
     fetchOrganizationBugs,
