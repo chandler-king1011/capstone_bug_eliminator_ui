@@ -3,6 +3,7 @@ import {
     FETCH_ORGANIZATION_BUGS, 
     FETCH_CURRENT_BUG, 
     REMOVE_CURRENT_BUG,
+    UPDATE_BUG,
     LOGOUT_USER
  } from '../actions/types';
 
@@ -40,6 +41,11 @@ export default function(state=initialState, action) {
                 userBugs: [],
                 organizationBugs: [],
                 currentBug: {}
+            }
+        case UPDATE_BUG:
+            return {
+                ...state,
+                currentBug: action.payload[0]
             }
         default: 
             return state

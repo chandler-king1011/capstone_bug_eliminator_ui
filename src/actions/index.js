@@ -7,7 +7,8 @@ import {
     fetchUserBugs, 
     fetchOrganizationBugs, 
     fetchCurrentBug,
-    removeCurrentBug 
+    removeCurrentBug,
+    updateBug
 } from './bug';
 
 export {
@@ -17,5 +18,6 @@ export {
     fetchUserBugs,
     fetchOrganizationBugs,
     fetchCurrentBug,
-    removeCurrentBug
+    removeCurrentBug,
+    updateBug
 }

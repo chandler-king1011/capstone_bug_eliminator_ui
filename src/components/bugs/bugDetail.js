@@ -34,7 +34,12 @@ class BugDetail extends Component {
             />
             <BugDetailHeader className="bug-detail__bug-header" bugTitle={this.props.currentBug.bugs_title}/>
             <div className="bug-detail__body-wrapper">
-                <Sidebar bug={this.props.currentBug} currentUserRole={this.props.user.users_role}/>
+                <Sidebar 
+                    bug={this.props.currentBug}
+                    token={this.props.userToken}
+                    updateBug={this.props.updateBug}
+                    userId ={this.props.user.users_id}
+                />
                 <div className="bug-detail__description-comments">
                     <div className="bug-detail__description">{this.props.currentBug.bugs_description}</div>
                     <div>comments</div>

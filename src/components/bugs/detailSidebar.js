@@ -60,7 +60,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const {bug} = this.props;
+    const {bug, updateBug, token, userId} = this.props;
     
     return(
         <div className="sidebar">
@@ -91,29 +91,31 @@ class Sidebar extends Component {
           </div>
 
             <div className="sidebar__buttons">
+         
                 <a onClick={this.handleSideButtonClick} className="sidebar-button assign-button">Assign To Me</a>
+                    {bug.bugs_assigned_id !== userId ?
                     <div className="assign sidebar-options">
                         <div className="assign-confirmation">Are You Sure?</div>
-                        <a className="sidebar-option">YES</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_assigned_id": userId}, bug.bugs_id, token)}>YES</a>
                         <a onClick={this.handleSideButtonClick} className="sidebar-option assign-no">NO</a>
-                    </div>
+                    </div> : <div className="already-assigned assign sidebar-options">This bug is already assigned to you.</div>}
 
                 <a onClick={this.handleSideButtonClick} className="sidebar-button severity-button" value="Severity">Change Severity</a>
                     <div className="severity sidebar-options">
-                        <a className="sidebar-option">Minor</a>
-                        <a className="sidebar-option">Medium</a>
-                        <a className="sidebar-option">Major</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_severity": "Minor"}, bug.bugs_id, token)}>Minor</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_severity": "Medium"}, bug.bugs_id, token)}>Medium</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_severity": "Major"}, bug.bugs_id, token)}>Major</a>
                     </div>
                 <a onClick={this.handleSideButtonClick} className="sidebar-button status-button">Change Status</a>
                     <div className="status sidebar-options">
-                        <a className="sidebar-option">In Progress</a>
-                        <a className="sidebar-option">Testing</a>
-                        <a className="sidebar-option">In Waiting</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_status": "In Progress"}, bug.bugs_id, token)}>In Progress</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_status": "Testing"}, bug.bugs_id, token)}>Testing</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_status": "In Waiting"}, bug.bugs_id, token)}>In Waiting</a>
                     </div>
                 <a onClick={this.handleSideButtonClick} className="sidebar-button resolve-button">Resolve Bug</a>
                     <div className="resolve sidebar-options">
                         <div className="resolve-confirmation">Are You Sure?</div>
-                        <a className="sidebar-option">YES</a>
+                        <a className="sidebar-option" onClick={() => updateBug({"bugs_status": "Resolved"}, bug.bugs_id, token)}>YES</a>
                         <a onClick={this.handleSideButtonClick} className="sidebar-option resolve-no">NO</a>
                     </div>
             </div>
