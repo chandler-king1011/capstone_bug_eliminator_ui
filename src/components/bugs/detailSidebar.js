@@ -63,6 +63,7 @@ class Sidebar extends Component {
     const {bug, updateBug, token, userId} = this.props;
     
     return(
+      <div className="sidebar-wrapper">
         <div className="sidebar">
           <div className="sidebar__top">
             <h1 className="sidebar__header">Bug Details</h1>
@@ -113,13 +114,16 @@ class Sidebar extends Component {
                         <a className="sidebar-option" onClick={() => updateBug({"bugs_status": "In Waiting"}, bug.bugs_id, token)}>In Waiting</a>
                     </div>
                 <a onClick={this.handleSideButtonClick} className="sidebar-button resolve-button">Resolve Bug</a>
+                    {bug.bugs_status !== "Resolved" ?
                     <div className="resolve sidebar-options">
                         <div className="resolve-confirmation">Are You Sure?</div>
                         <a className="sidebar-option" onClick={() => updateBug({"bugs_status": "Resolved"}, bug.bugs_id, token)}>YES</a>
                         <a onClick={this.handleSideButtonClick} className="sidebar-option resolve-no">NO</a>
-                    </div>
+                    </div> :
+                    <div className="already-resolved resolve sidebar-options">This Bug has been resolved. You may reopen the bug in Change Status.</div>}
             </div>
         </div>
+    </div>
     )
 }
 }

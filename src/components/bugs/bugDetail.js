@@ -6,6 +6,7 @@ import * as actions from '../../actions';
 import DashboardHeader from '../dashboard/dashboardHeader';
 import BugDetailHeader from './bugDetailHeader';
 import Sidebar from './detailSidebar';
+import CommentTag from '../comments/commentTag';
 
 
 
@@ -16,11 +17,13 @@ class BugDetail extends Component {
 
   componentWillMount() {
       this.props.fetchCurrentBug(this.props.match.params.slug, this.props.userToken);
+      this.props.fetchComments(this.props.match.params.slug, this.props.userToken);
   }
 
   componentWillUnmount() {
       this.props.removeCurrentBug();
   }
+
 
   render() {
     return(
@@ -42,10 +45,20 @@ class BugDetail extends Component {
                 />
                 <div className="bug-detail__description-comments">
                     <div className="bug-detail__description">{this.props.currentBug.bugs_description}</div>
-                    <div>comments</div>
+                    <div className="bug-detail__comments-wrapper">
+                        {this.props.currentBugComments.length > 0 ? this.props.currentBugComments.map(comment => {
+                            return (
+                            <CommentTag key={comment.comments_id} comment={comment} />
+                            )
+                        }) : <div>There are no comments for this bug yet.</div>}
+                    </div>
+                    <div>Create new comment.</div>
                 </div>
                 <div className="bug-detail__pictures">
-                    Pictures
+                    <img src="http://via.placeholder.com/200x200" />
+                    <img src="http://via.placeholder.com/200x200" />
+                    <img src="http://via.placeholder.com/200x200" />
+                    <img src="http://via.placeholder.com/200x200" />
                 </div>
 
 
@@ -58,9 +71,11 @@ class BugDetail extends Component {
 const mapStateToProps = (state) => {
     const { userToken, user } = state.userReducer;
     const { currentBug } = state.bugReducer;
+    const { currentBugComments } = state.commentReducer;
     return {
-        userToken,
         currentBug,
+        currentBugComments,
+        userToken,
         user
     }
 }

@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import userReducer from "./user";
 import bugReducer from './bug';
+import commentReducer from './comment';
 
 
 const persistConfig = {
@@ -14,7 +15,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   userReducer,
-  bugReducer
+  bugReducer,
+  commentReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

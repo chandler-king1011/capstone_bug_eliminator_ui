@@ -11,6 +11,10 @@ import {
     updateBug
 } from './bug';
 
+import {
+    fetchComments
+} from './comments';
+
 export {
     login,
     logout,
@@ -19,5 +23,6 @@ export {
     fetchOrganizationBugs,
     fetchCurrentBug,
     removeCurrentBug,
-    updateBug
+    updateBug,
+    fetchComments
 }

@@ -1,0 +1,39 @@
+
+.comments-wrapper {
+  width: 40vw;
+}
+.comment-tag {
+    margin-top: 25px;
+    width: 100%;
+    background-color: $silver;
+    color: $white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    font-size: 1.5em;
+    box-shadow: 2px 2px 5px 0px rgba(63,61,61,0.75);
+
+    .comment-tag__top-wrapper{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding: 20px;
+        border-bottom: 1px solid $white;
+    }
+
+    .comment-tag__user{
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .comment-tag__date{}
+
+        .comment-tag__text{
+            width: 38vw;
+            padding: 20px;
+        }
+
+}
