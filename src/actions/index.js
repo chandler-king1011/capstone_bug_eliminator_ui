@@ -12,7 +12,8 @@ import {
 } from './bug';
 
 import {
-    fetchComments
+    fetchComments,
+    postComment
 } from './comments';
 
 export {
@@ -24,5 +25,6 @@ export {
     fetchCurrentBug,
     removeCurrentBug,
     updateBug,
-    fetchComments
+    fetchComments,
+    postComment
 }

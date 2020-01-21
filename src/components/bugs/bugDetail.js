@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import * as actions from '../../actions';
 
@@ -7,12 +8,15 @@ import DashboardHeader from '../dashboard/dashboardHeader';
 import BugDetailHeader from './bugDetailHeader';
 import Sidebar from './detailSidebar';
 import CommentTag from '../comments/commentTag';
+import NewComment from '../comments/newComment';
 
 
 
 class BugDetail extends Component {
   constructor(props) {
   super(props);
+
+  this.handleNewCommentSubmit = this.handleNewCommentSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -22,6 +26,16 @@ class BugDetail extends Component {
 
   componentWillUnmount() {
       this.props.removeCurrentBug();
+  }
+
+  handleNewCommentSubmit(comment) {
+    let commentData = {
+        comments_users_id : this.props.user.users_id,
+        comments_bugs_id : this.props.currentBug.bugs_id,
+        comments_text : comment,
+        comments_created_date : moment().format()
+    }
+    this.props.postComment(commentData, this.props.userToken);
   }
 
 
@@ -52,7 +66,10 @@ class BugDetail extends Component {
                             )
                         }) : <div>There are no comments for this bug yet.</div>}
                     </div>
-                    <div>Create new comment.</div>
+                    <NewComment 
+                        className="bug-detail__new-comment"
+                        onSubmit={this.handleNewCommentSubmit}
+                    />
                 </div>
                 <div className="bug-detail__pictures">
                     <img src="http://via.placeholder.com/200x200" />
