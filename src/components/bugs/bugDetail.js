@@ -65,11 +65,13 @@ class BugDetail extends Component {
                             <CommentTag key={comment.comments_id} comment={comment} />
                             )
                         }) : <div>There are no comments for this bug yet.</div>}
-                    </div>
                     <NewComment 
                         className="bug-detail__new-comment"
                         onSubmit={this.handleNewCommentSubmit}
                     />
+                    </div>
+
+
                 </div>
                 <div className="bug-detail__pictures">
                     <img src="http://via.placeholder.com/200x200" />

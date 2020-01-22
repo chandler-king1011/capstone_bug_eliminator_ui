@@ -1,14 +1,57 @@
 .new-comment__form {
     width: 100%;
-    height: min(50px);
     margin-top: 25px;
     margin-bottom: 50px;
-    background-color: $silver;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
     .new-comment__text {
+        height: min(200px);
+        width: 100%;
+        align-self: flex-start;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px 0px rgba(63,61,61,0.75);
+        background-color: $white;
+        color: $grey;
+        transition: 0.3s ease-in-out;
+        overflow-y: auto;
+        font-family: $paragraph;
+        font-size: 1.5em;
+
+        &:focus {
+            background-color: $grey;
+            color: $white;
+        }
+
 
     }
 
     .new-comment__button {
+        align-self: flex-end;
+        margin-top: 20px;
+        height: 50px;
+        width: 200px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.5em;
+        font-family: $paragraph;
+        color: $white;
+        background-color: $grey;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $black;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
 
     }
 

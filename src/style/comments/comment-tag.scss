@@ -5,7 +5,7 @@
 .comment-tag {
     margin-top: 25px;
     width: 100%;
-    background-color: $silver;
+    background-color: $grey;
     color: $white;
     border-radius: 5px;
     display: flex;
@@ -28,8 +28,6 @@
         justify-content: space-between;
 
     }
-
-    .comment-tag__date{}
 
         .comment-tag__text{
             width: 38vw;
