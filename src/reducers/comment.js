@@ -1,4 +1,4 @@
-import {FETCH_BUG_COMMENTS, POST_NEW_COMMENT} from '../actions/types';
+import {FETCH_BUG_COMMENTS, POST_NEW_COMMENT, DELETE_COMMENT} from '../actions/types';
 
 
 const initialState = {
@@ -23,6 +23,16 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 currentBugComments: updatedComments
+            }
+        
+        case DELETE_COMMENT: 
+            console.log(action.payload);
+            let updateAfterDelete = state.currentBugComments.filter(comment => {
+                return comment.comments_id != action.payload;
+            })
+            return {
+                ...state,
+                currentBugComments: updateAfterDelete
             }
         default:
             return state

@@ -7,9 +7,9 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Router, Switch, Route } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinner} from '@fortawesome/free-solid-svg-icons'
+import {faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinner, faTrashAlt, faEdit} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinner );
+library.add(faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinner, faTrashAlt, faEdit);
 
 
 import reducers from "./reducers";

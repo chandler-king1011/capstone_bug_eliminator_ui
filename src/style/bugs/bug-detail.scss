@@ -15,7 +15,16 @@
             box-shadow: 2px 2px 5px 0px rgba(63,61,61,0.75);
         
         }
+
+        .bug-detail__no-comments {
+            font-size: 2em;
+            font-family: $paragraph;
+            margin-top: 25px;
+            color: $black;
+        }
     }
+
+
 
     .bug-detail__pictures {
         height: 50vh;

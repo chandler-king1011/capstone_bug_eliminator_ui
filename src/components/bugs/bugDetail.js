@@ -62,9 +62,15 @@ class BugDetail extends Component {
                     <div className="bug-detail__comments-wrapper">
                         {this.props.currentBugComments.length > 0 ? this.props.currentBugComments.map(comment => {
                             return (
-                            <CommentTag key={comment.comments_id} comment={comment} />
+                            <CommentTag 
+                                key={comment.comments_id}
+                                comment={comment} 
+                                delete={this.props.deleteComment}
+                                token={this.props.userToken}
+                                userId={this.props.user.users_id}
+                            />
                             )
-                        }) : <div>There are no comments for this bug yet.</div>}
+                        }) : <div className="bug-detail__no-comments">There are no comments for this bug yet.</div>}
                     <NewComment 
                         className="bug-detail__new-comment"
                         onSubmit={this.handleNewCommentSubmit}

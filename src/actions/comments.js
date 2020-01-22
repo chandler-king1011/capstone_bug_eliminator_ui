@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {FETCH_BUG_COMMENTS, POST_NEW_COMMENT} from "./types";
+import {FETCH_BUG_COMMENTS, POST_NEW_COMMENT, DELETE_COMMENT} from "./types";
 
 export function fetchComments(bugId, token) {
     return function(dispatch) {
@@ -45,4 +45,25 @@ export function postComment(commentData, token) {
         console.log(err);
     })
   }
+}
+
+
+export function deleteComment(commentId, token) {
+    return function(dispatch) {
+        axios({
+            method: 'delete',
+            url: `https://api-capstone-bug-tracker.herokuapp.com/comment/${commentId}`,
+            headers: {'auth-token': token}
+        }).then(response => {
+            if (response.data.status === 200) {
+                    dispatch({
+                        type: DELETE_COMMENT,
+                        payload: commentId
+                    })
+            }
+            else {
+                console.log(res);
+            }
+        }).catch(error => console.log(error))
+    }
 }

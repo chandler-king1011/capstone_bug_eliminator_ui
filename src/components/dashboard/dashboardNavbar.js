@@ -27,7 +27,7 @@ class DashboardNavbar extends Component {
                 <FontAwesomeIcon icon={"sign-out-alt"} className="navbar-link__icon"/>
                 <div className="navbar-link__title">Leave Group</div>
             </a>            
-             }
+            }
         </div>
     )
 }

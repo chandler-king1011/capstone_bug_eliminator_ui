@@ -27,6 +27,10 @@
             color: $white;
         }
 
+        &::placeholder{
+            padding: 5px;
+        }
+
 
     }
 
