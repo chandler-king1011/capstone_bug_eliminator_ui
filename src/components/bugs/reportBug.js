@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import * as actions from '../../actions';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
 import ReportBugForm from '../bugs/reportBugForm';
@@ -20,7 +23,12 @@ class ReportBug extends Component {
               logOut={() =>this.props.logout()}
             />
 
-            <ReportBugForm />
+            <ReportBugForm
+              className="report-bug__form"
+              user={this.props.user}
+              token={this.props.userToken}
+              reportBug={this.props.reportBug}
+            />
 
 
         </div>
@@ -28,4 +36,13 @@ class ReportBug extends Component {
 }
 }
 
-export default ReportBug;
+const mapStateToProps = (state) => {
+    const {user, userToken} = state.userReducer;
+    return {
+      user,
+      userToken
+    }
+}
+
+
+export default connect(mapStateToProps, actions)(ReportBug);

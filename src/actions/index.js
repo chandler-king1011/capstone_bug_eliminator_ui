@@ -8,7 +8,8 @@ import {
     fetchOrganizationBugs, 
     fetchCurrentBug,
     removeCurrentBug,
-    updateBug
+    updateBug,
+    reportBug
 } from './bug';
 
 import {
@@ -28,5 +29,6 @@ export {
     updateBug,
     fetchComments,
     postComment,
-    deleteComment
+    deleteComment,
+    reportBug
 }

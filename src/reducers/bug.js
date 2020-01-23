@@ -4,13 +4,16 @@ import {
     FETCH_CURRENT_BUG, 
     REMOVE_CURRENT_BUG,
     UPDATE_BUG,
-    LOGOUT_USER
+    LOGOUT_USER,
+    REPORT_BUG_SUCCESS,
+    REPORT_BUG_FAILURE
  } from '../actions/types';
 
 const initialState = {
     userBugs: [],
     organizationBugs: [],
-    currentBug: {}
+    currentBug: {},
+    reportBugMessage: ""
 }
 
 export default function(state=initialState, action) {
@@ -46,6 +49,18 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 currentBug: action.payload[0]
+            }
+        case REPORT_BUG_SUCCESS:
+            console.log(action.payload);
+            return {
+                ...state,
+                reportBugMessage: action.payload
+            }
+        case REPORT_BUG_FAILURE:
+            console.log(action.payload);
+            return {
+                ...state,
+                reportBugMessage: action.payload
             }
         default: 
             return state

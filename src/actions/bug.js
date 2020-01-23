@@ -7,7 +7,9 @@ import {
     FETCH_ORGANIZATION_BUGS, 
     FETCH_CURRENT_BUG, 
     REMOVE_CURRENT_BUG,
-    UPDATE_BUG
+    UPDATE_BUG,
+    REPORT_BUG_FAILURE,
+    REPORT_BUG_SUCCESS
 } from './types';
 
 export function fetchUserBugs(userId, token) {
@@ -102,4 +104,28 @@ export function updateBug(bug, bugId, token) {
             console.log(err);
         })
   }
+}
+
+
+export function reportBug(bug, token){
+    return function(dispatch) {
+        axios({
+            method: "post",
+            url: "https://api-capstone-bug-tracker.herokuapp.com/bugs",
+            headers: {'auth-token': token},
+            data: bug
+        }).then(response => {
+            if (response.data.status === 200) {
+                dispatch({
+                    type: REPORT_BUG_SUCCESS,
+                    payload: "The bug was reported successfully!"
+                })
+            } else {
+                dispatch({
+                    type: REPORT_BUG_FAILURE,
+                    payload: "Reporting this bug failed. Please try again."
+                })
+            }
+        }).catch(error => console.log(error));
+    }
 }

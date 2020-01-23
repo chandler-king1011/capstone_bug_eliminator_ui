@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import DropzoneComponent from 'react-dropzone-component';
+
+import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
+
 
 import formTitle from '../formTitle';
 
 class ReportBugForm extends Component {
-  constructor() {
-  super();
+  constructor(props) {
+  super(props);
 
 
   this.state = {
@@ -14,17 +20,65 @@ class ReportBugForm extends Component {
     bugs_image_three: null,
     bugs_image_four: null,
     bugs_status: "NEW",
-    bugs_severity: "",
-    bugs_replicable: "",
+    bugs_severity: "Minor",
+    bugs_replicable: "YES",
     bugs_created_date: "", 
-    bugs_assigned_id: "",
+    bugs_assigned_id: this.props.user.users_id,
     bugs_description: "",
-    bugs_organization_id: ""
+    bugs_organization_id: this.props.user.users_organization_id
   }
 
 
   this.onChange=this.onChange.bind(this);
+  this.onSubmit=this.onSubmit.bind(this);
+  this.djsConfig=this.djsConfig.bind(this);
+  this.componentConfig=this.componentConfig.bind(this);
+  this.handleFirstImgDrop=this.handleFirstImgDrop.bind(this);
+  this.handleSecondImgDrop=this.handleFirstImgDrop.bind(this);
+  this.handleThirdImgDrop=this.handleFirstImgDrop.bind(this);
+  this.handleFourthImgDrop=this.handleFirstImgDrop.bind(this);
 }
+
+  handleFirstImgDrop() {
+      return {
+          addedfiles: file => this.setState({bugs_image_one: file})
+      }
+  }
+
+handleSecondImgDrop() {
+    return {
+        addedfiles: file => this.setState({bugs_image_two: file})
+    }
+}
+
+handleThirdImgDrop() {
+    return {
+        addedfiles: file => this.setState({bugs_image_three: file})
+    }
+}
+
+handleFourthImgDrop() {
+    return {
+        addedfiles: file => this.setState({bugs_image_four: file})
+    }
+}
+
+
+  componentConfig() {
+        return {
+            iconFiletypes: [".jpg", ".png"],
+            showFiletypeIcon: true,
+            postUrl: "https://httpbin.org/post" 
+        }
+  }
+
+
+  djsConfig() {
+        return {
+            addRemoveLinks: true,
+            maxFiles: 1
+        }
+  }
 
   onChange(e) {
       this.setState({
@@ -32,36 +86,114 @@ class ReportBugForm extends Component {
       })
   }
 
+  onSubmit(e) {
+      e.preventDefault();
+      this.setState({
+        bugs_created_date: `${moment().format()}`
+      });
+
+      this.props.reportBug(this.state, this.props.token);
+  }
+
   
   render() {
     return(
-        <div className="bug-form">
+        <div className={`bug-form ${this.props.className}`}>
             <div className="bug-form__title-wrapper">
                 {formTitle("bug-form__title", "REPORT A BUG")}
             </div>
-            <form className="bug-form__form" >
-                <input 
-                    className="bug-form__input"
-                    type="text" 
-                    name="bugs_title" 
-                    placeholder="Title" 
-                    onChange={this.onChange} 
-                    value={this.state.bugs_title} 
-                />
+            <form className="bug-form__form" onSubmit={this.onSubmit} >
+                <div className="bug-form__input-group">
+                    <label className="bug-form__title">Title</label>
+                    <input 
+                        className="bug-form__input"
+                        type="text" 
+                        name="bugs_title" 
+                        placeholder="Title" 
+                        onChange={this.onChange} 
+                        value={this.state.bugs_title} 
+                    />
+                </div>
 
-                <select
-                    className="bug-form__input" 
-                    type="severity" 
-                    name="bugs_severity" 
-                    placeholder="Severity"
-                    onChange={this.onChange}
-                    value={this.state.bugs_severity}
-                >
-                    <option>Select the Severity</option>
-                    <option value="Minor">Minor</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Major">Major</option>
-                </select>     
+                <div className="bug-form__input-group">
+                    <label className="bug-form__label">Severity</label>
+                    <select
+                        className="bug-form__input" 
+                        type="severity" 
+                        name="bugs_severity" 
+                        placeholder="Severity"
+                        onChange={this.onChange}
+                        value={this.state.bugs_severity}
+                    >
+                        <option value="Minor">Minor</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Major">Major</option>
+                    </select>    
+                </div> 
+
+                <div className="bug-form__input-group">
+                    <label className="bug-form__label">Replicable</label>
+                    <select
+                        className="bug-form__input" 
+                        type="replicable" 
+                        name="bugs_replicable" 
+                        placeholder="Severity"
+                        onChange={this.onChange}
+                        value={this.state.bugs_replicable}
+                    >
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>    
+                </div> 
+
+                <div className="bug-form__input-group">
+                    <label className="bug-form__label">Description</label>
+                    <textarea 
+                        className="bug-form__input bug-form__description"
+                        placeholder="Describe the Bug"
+                        value={this.state.bugs_description}
+                        onChange={this.onChange}
+                        name="bugs_description"
+                        type="description"
+                    />
+                </div>
+
+                <div className="bug-form__dropzones">
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleFirstImgDrop()}
+                    >
+                            <div className="dz-message">Add Image</div>
+                    </DropzoneComponent>
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleSecondImgDrop()}
+                    >
+                            <div className="dz-message">Add Image</div>
+                    </DropzoneComponent>
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleThirdImgDrop()}
+                    >
+                            <div className="dz-message">Add Image</div>
+                    </DropzoneComponent>
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleFourthImgDrop()}
+                    >
+                            <div className="dz-message">Add Image</div>
+                    </DropzoneComponent>
+
+
+
+
+                </div>
+
+            
 
                 <button className="bug-form__button" type="submit">Submit</button>
             </form>
@@ -70,19 +202,5 @@ class ReportBugForm extends Component {
 }
 }
 
-/* 
-bugs_title:  
-bugs_image_one: 
-bugs_image_two: 
-bugs_image_three: 
-bugs_image_four: 
-bugs_status: 
-bugs_severity: 
-bugs_replicable: 
-bugs_created_date: 
-bugs_assigned_id: 
-bugs_description:
-bugs_organization_id: 
-*/
 
 export default ReportBugForm;
