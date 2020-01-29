@@ -51,7 +51,7 @@ export function fetchCurrentBug(bugId, token) {
         axios({
             method: 'get',
             url: `https://api-capstone-bug-tracker.herokuapp.com/bug/${bugId}`,
-            headers: {'auth-token': token}
+            headers: {'auth-token': token, 'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
             dispatch({
@@ -109,12 +109,17 @@ export function updateBug(bug, bugId, token) {
 
 export function reportBug(bug, token){
     return function(dispatch) {
+        console.log(bug);
         axios({
             method: "post",
             url: "https://api-capstone-bug-tracker.herokuapp.com/bugs",
-            headers: {'auth-token': token},
-            data: bug
+            headers: {
+                'auth-token': token,
+                'Content-Type': 'multipart/form-data'
+        },
+            data: bug,
         }).then(response => {
+            console.log(response);
             if (response.data.status === 200) {
                 dispatch({
                     type: REPORT_BUG_SUCCESS,

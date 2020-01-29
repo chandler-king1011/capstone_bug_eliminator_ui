@@ -16,21 +16,20 @@ class ReportBug extends Component {
     return(
         <div className="report-bug">
             <DashboardHeader
-              pageTitle="Report A Bug"
+              pageTitle="Report a Bug"
               className="report-bug__header"   
               linkOne="/user-dashboard"
-              linkOneName="Back To Dashboard"
+              linkOneName="Dashboard"
               logOut={() =>this.props.logout()}
             />
-
-            <ReportBugForm
-              className="report-bug__form"
-              user={this.props.user}
-              token={this.props.userToken}
-              reportBug={this.props.reportBug}
-            />
-
-
+              <ReportBugForm
+                className="report-bug__form"
+                user={this.props.user}
+                token={this.props.userToken}
+                reportBug={this.props.reportBug}
+                message={this.props.reportBugMessage}
+                error={this.props.reportBugError}
+              />
         </div>
     )
 }
@@ -38,9 +37,12 @@ class ReportBug extends Component {
 
 const mapStateToProps = (state) => {
     const {user, userToken} = state.userReducer;
+    const { reportBugMessage, reportBugError } = state.bugReducer;
     return {
       user,
-      userToken
+      userToken,
+      reportBugMessage,
+      reportBugError
     }
 }
 

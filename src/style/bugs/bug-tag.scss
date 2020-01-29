@@ -1,14 +1,15 @@
 .bug-tag {
     width: 50vw;
-    height: 40px;
+    height: min(40px);
     margin-top: 25px;
     padding: 20px;
     color: $white;
     background-color: $black;
     border-radius: 5px;
     box-shadow: 0px 5px 10px 0px rgba(63,61,61,1);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
     align-items: center;
     font-size: 1.5em;
     font-family: $paragraph;

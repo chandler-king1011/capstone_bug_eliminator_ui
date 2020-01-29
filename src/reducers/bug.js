@@ -13,7 +13,8 @@ const initialState = {
     userBugs: [],
     organizationBugs: [],
     currentBug: {},
-    reportBugMessage: ""
+    reportBugMessage: "",
+    reportBugError: ""
 }
 
 export default function(state=initialState, action) {
@@ -51,16 +52,14 @@ export default function(state=initialState, action) {
                 currentBug: action.payload[0]
             }
         case REPORT_BUG_SUCCESS:
-            console.log(action.payload);
             return {
                 ...state,
                 reportBugMessage: action.payload
             }
         case REPORT_BUG_FAILURE:
-            console.log(action.payload);
             return {
                 ...state,
-                reportBugMessage: action.payload
+                reportBugError: action.payload
             }
         default: 
             return state

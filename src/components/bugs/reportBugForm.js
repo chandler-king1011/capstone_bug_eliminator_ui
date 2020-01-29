@@ -6,6 +6,7 @@ import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 
+import history from '../../history';
 import formTitle from '../formTitle';
 
 class ReportBugForm extends Component {
@@ -17,12 +18,10 @@ class ReportBugForm extends Component {
     bugs_title: "",
     bugs_image_one: null,
     bugs_image_two: null,
-    bugs_image_three: null,
-    bugs_image_four: null,
     bugs_status: "NEW",
     bugs_severity: "Minor",
     bugs_replicable: "YES",
-    bugs_created_date: "", 
+    bugs_created_date: moment().format(), 
     bugs_assigned_id: this.props.user.users_id,
     bugs_description: "",
     bugs_organization_id: this.props.user.users_organization_id
@@ -34,34 +33,27 @@ class ReportBugForm extends Component {
   this.djsConfig=this.djsConfig.bind(this);
   this.componentConfig=this.componentConfig.bind(this);
   this.handleFirstImgDrop=this.handleFirstImgDrop.bind(this);
-  this.handleSecondImgDrop=this.handleFirstImgDrop.bind(this);
-  this.handleThirdImgDrop=this.handleFirstImgDrop.bind(this);
-  this.handleFourthImgDrop=this.handleFirstImgDrop.bind(this);
+  this.handleSecondImgDrop=this.handleSecondImgDrop.bind(this);
+
+
+  this.firstRef = React.createRef();
+  this.secondRef = React.createRef();
 }
 
-  handleFirstImgDrop() {
+
+
+handleFirstImgDrop() {
       return {
-          addedfiles: file => this.setState({bugs_image_one: file})
+          addedfiles: file => this.setState({bugs_image_one: file[0]})
       }
   }
 
 handleSecondImgDrop() {
     return {
-        addedfiles: file => this.setState({bugs_image_two: file})
+        addedfiles: file => this.setState({bugs_image_two: file[0]})
     }
 }
 
-handleThirdImgDrop() {
-    return {
-        addedfiles: file => this.setState({bugs_image_three: file})
-    }
-}
-
-handleFourthImgDrop() {
-    return {
-        addedfiles: file => this.setState({bugs_image_four: file})
-    }
-}
 
 
   componentConfig() {
@@ -75,7 +67,7 @@ handleFourthImgDrop() {
 
   djsConfig() {
         return {
-            addRemoveLinks: true,
+            addRemoveLinks: false,
             maxFiles: 1
         }
   }
@@ -88,23 +80,43 @@ handleFourthImgDrop() {
 
   onSubmit(e) {
       e.preventDefault();
-      this.setState({
-        bugs_created_date: `${moment().format()}`
-      });
+      let formData = new FormData();
+      formData.append("bugs_title", this.state.bugs_title);
+      formData.append("bugs_status", this.state.bugs_status);
+      formData.append("bugs_severity", this.state.bugs_severity);
+      formData.append("bugs_replicable", this.state.bugs_replicable);
+      formData.append("bugs_created_date", moment().format());
+      formData.append("bugs_assigned_id", this.state.bugs_assigned_id);
+      formData.append("bugs_description", this.state.bugs_description);
+      formData.append("bugs_organization_id", this.state.bugs_organization_id);
+  
+      if (this.state.bugs_image_one != null) {
+        formData.append("bugs_image_one", this.state.bugs_image_one);
+    } else {
+        formData.append("bugs_image_one", null)
+    }
 
-      this.props.reportBug(this.state, this.props.token);
+    if (this.state.bugs_image_two != null) {
+        formData.append("bugs_image_two", this.state.bugs_image_one);
+    } else {
+        formData.append("bugs_image_two", null)
+    }
+
+    this.props.reportBug(formData, this.props.token);
   }
 
   
   render() {
     return(
         <div className={`bug-form ${this.props.className}`}>
-            <div className="bug-form__title-wrapper">
-                {formTitle("bug-form__title", "REPORT A BUG")}
-            </div>
-            <form className="bug-form__form" onSubmit={this.onSubmit} >
+            
+            {this.props.error.length > 0 ? 
+            <div className="bug-form__report-error">{this.props.error}</div>
+            : null}
+            {this.props.message.length === 0 ?
+            <form className="bug-form__form" onSubmit={this.onSubmit}>
                 <div className="bug-form__input-group">
-                    <label className="bug-form__title">Title</label>
+                    <label className="bug-form__label">Title</label>
                     <input 
                         className="bug-form__input"
                         type="text" 
@@ -160,43 +172,38 @@ handleFourthImgDrop() {
 
                 <div className="bug-form__dropzones">
                     <DropzoneComponent 
+                        ref={this.firstRef}
                         config={this.componentConfig()}
                         djsConfig={this.djsConfig()}
                         eventHandlers={this.handleFirstImgDrop()}
                     >
                             <div className="dz-message">Add Image</div>
                     </DropzoneComponent>
+                    { this.state.bugs_image_one === null ? 
+                    <div className="bug-form__add-image-wrapper"> 
+                        <div className="bug-form__add-image">Add Images</div>
+                    </div>
+                    :
                     <DropzoneComponent 
-                        config={this.componentConfig()}
-                        djsConfig={this.djsConfig()}
-                        eventHandlers={this.handleSecondImgDrop()}
-                    >
-                            <div className="dz-message">Add Image</div>
+                            ref={this.secondRef}
+                            config={this.componentConfig()}
+                            djsConfig={this.djsConfig()}
+                            eventHandlers={this.handleSecondImgDrop()}
+                        >
+                                <div className="dz-message">Add Image</div>
                     </DropzoneComponent>
-                    <DropzoneComponent 
-                        config={this.componentConfig()}
-                        djsConfig={this.djsConfig()}
-                        eventHandlers={this.handleThirdImgDrop()}
-                    >
-                            <div className="dz-message">Add Image</div>
-                    </DropzoneComponent>
-                    <DropzoneComponent 
-                        config={this.componentConfig()}
-                        djsConfig={this.djsConfig()}
-                        eventHandlers={this.handleFourthImgDrop()}
-                    >
-                            <div className="dz-message">Add Image</div>
-                    </DropzoneComponent>
-
-
-
-
+                    }
                 </div>
 
-            
-
                 <button className="bug-form__button" type="submit">Submit</button>
-            </form>
+            </form> 
+            : <div className="bug-form__response">
+                <div className="bug-form__response-message">{this.props.message}</div>
+                    <div className="bug-form__response-links">
+                        <a  className="bug-form__response-link" onClick={() => history.push("/user-dashboard")}>Return to Dashboard</a>
+                    </div>
+                </div>
+            }
         </div>
     )
 }
