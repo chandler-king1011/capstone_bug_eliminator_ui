@@ -6,8 +6,6 @@ import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 
-import history from '../../history';
-import formTitle from '../formTitle';
 
 class ReportBugForm extends Component {
   constructor(props) {
@@ -109,11 +107,9 @@ handleSecondImgDrop() {
   render() {
     return(
         <div className={`bug-form ${this.props.className}`}>
-            
             {this.props.error.length > 0 ? 
             <div className="bug-form__report-error">{this.props.error}</div>
             : null}
-            {this.props.message.length === 0 ?
             <form className="bug-form__form" onSubmit={this.onSubmit}>
                 <div className="bug-form__input-group">
                     <label className="bug-form__label">Title</label>
@@ -197,13 +193,6 @@ handleSecondImgDrop() {
 
                 <button className="bug-form__button" type="submit">Submit</button>
             </form> 
-            : <div className="bug-form__response">
-                <div className="bug-form__response-message">{this.props.message}</div>
-                    <div className="bug-form__response-links">
-                        <a  className="bug-form__response-link" onClick={() => history.push("/user-dashboard")}>Return to Dashboard</a>
-                    </div>
-                </div>
-            }
         </div>
     )
 }

@@ -1,0 +1,30 @@
+.search-bug__searchbar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+
+
+    .searchbar__bar {
+        padding-right: 10px;
+        padding-left: 10px;
+        height: 50px;
+        justify-self: center;
+        width: 50vw;
+        border: 1px solid $silver;
+        border-radius: 25px;
+        background-color: $white;
+        color: $grey;
+        font-size: 1.5em;
+        font-family: $paragraph;
+        box-shadow: 0px 5px 5px 0px rgba(5,2,2,0.5);
+        transition: 0.2s ease-in-out;
+
+        &:focus {
+            outline: none;
+            background-color: $grey;
+            color: $white;
+        }
+    }
+
+
+}

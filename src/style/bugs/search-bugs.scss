@@ -1,0 +1,17 @@
+.search-bugs {
+    display: grid;
+    grid-template-rows: 110px, 1fr, 1fr;
+    grid-gap: 25px;
+
+    .search-bugs__bugs {
+        justify-self: center;
+    }
+
+    .search-bugs__no-matching {
+        width: 50vw;
+        justify-self: center;
+        font-size: 2em;
+        font-family: $paragraph;
+        color: $red;
+    }
+}

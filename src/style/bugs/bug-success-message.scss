@@ -1,0 +1,52 @@
+.bug-form__response {
+    height: 400px;
+    width: 600px;
+    justify-self: center;
+    background-color: $black;
+    border-radius: 5px;
+    border: 1px solid $red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .bug-form__response-message {
+        margin-top: 25px;
+        font-size: 2em;
+        font-family: $paragraph;
+        color: $white;
+    }
+
+    .bug-form__response-links {
+        margin-bottom: 25px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+
+        .bug-form__response-link {
+            height: 50px;
+            width: 150px;
+            border-radius: 25px;
+            border: none;
+            color: $white;
+            background-color: $grey;
+            font-family: $paragraph;
+            font-size: 1.5em;
+            text-align: center;
+            text-justify: center;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+
+            &:hover  {
+                color: $silver;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+        }
+    }
+}

@@ -6,15 +6,21 @@ import {
     UPDATE_BUG,
     LOGOUT_USER,
     REPORT_BUG_SUCCESS,
-    REPORT_BUG_FAILURE
+    REPORT_BUG_FAILURE,
+    CLEAR_REPORT_SUCCESS_MESSAGE,
+    SEARCH_ALL_BUGS,
+    CLEAR_SEARCH_BUGS,
+    NO_MATCHING_RESULTS
  } from '../actions/types';
 
 const initialState = {
     userBugs: [],
     organizationBugs: [],
+    bugSearchBugs: [],
     currentBug: {},
     reportBugMessage: "",
-    reportBugError: ""
+    reportBugError: "",
+    noBugsMessage: ""
 }
 
 export default function(state=initialState, action) {
@@ -60,6 +66,30 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 reportBugError: action.payload
+            }
+        case CLEAR_REPORT_SUCCESS_MESSAGE:
+            return {
+                ...state,
+                reportBugMessage: action.payload
+            }
+
+        case SEARCH_ALL_BUGS:
+            return {
+                ...state,
+                noBugsMessage: "",
+                bugSearchBugs: action.payload
+            }
+        case NO_MATCHING_RESULTS: 
+            return {
+                ...state,
+                noBugsMessage: "No Matching Results",
+                bugSearchBugs: action.payload
+            }
+        case CLEAR_SEARCH_BUGS: 
+            return {
+                ...state,
+                noBugsMessage: "",
+                bugSearchBugs: action.payload
             }
         default: 
             return state

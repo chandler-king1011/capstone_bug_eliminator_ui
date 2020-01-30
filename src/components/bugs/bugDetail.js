@@ -80,7 +80,6 @@ class BugDetail extends Component {
 
                 </div>
                 <div className="bug-detail__pictures">
-                    {console.log(this.props.currentBug.bugs_image_one)}
                     <img src={this.props.currentBug.bugs_image_one} />
                     <img src={this.props.currentBug.bugs_image_two} />
                 </div>

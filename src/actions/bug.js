@@ -9,7 +9,11 @@ import {
     REMOVE_CURRENT_BUG,
     UPDATE_BUG,
     REPORT_BUG_FAILURE,
-    REPORT_BUG_SUCCESS
+    REPORT_BUG_SUCCESS,
+    CLEAR_REPORT_SUCCESS_MESSAGE,
+    SEARCH_ALL_BUGS,
+    CLEAR_SEARCH_BUGS,
+    NO_MATCHING_RESULTS
 } from './types';
 
 export function fetchUserBugs(userId, token) {
@@ -109,7 +113,6 @@ export function updateBug(bug, bugId, token) {
 
 export function reportBug(bug, token){
     return function(dispatch) {
-        console.log(bug);
         axios({
             method: "post",
             url: "https://api-capstone-bug-tracker.herokuapp.com/bugs",
@@ -119,7 +122,6 @@ export function reportBug(bug, token){
         },
             data: bug,
         }).then(response => {
-            console.log(response);
             if (response.data.status === 200) {
                 dispatch({
                     type: REPORT_BUG_SUCCESS,
@@ -132,5 +134,49 @@ export function reportBug(bug, token){
                 })
             }
         }).catch(error => console.log(error));
+    }
+}
+
+
+export function clearReportSuccessMessage() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_REPORT_SUCCESS_MESSAGE,
+            payload: "",
+        })
+    }
+}
+
+export function searchAllBugs(query, token, organizationId) {
+    return function(dispatch) {
+        axios({
+            method: "post",
+            url: `https://api-capstone-bug-tracker.herokuapp.com/search/organization-bugs/${organizationId}`,
+            headers: {'auth-token': token},
+            data: {"query": query}
+        }).then(results => {
+            if (results.data.length > 0) {
+            dispatch({
+              type: SEARCH_ALL_BUGS,  
+              payload: results.data
+            })
+          } else if (results.data.length === 0) {
+              dispatch({
+                  type: NO_MATCHING_RESULTS,
+                  payload: results.data
+              })
+          }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+}
+
+export function clearSearchBugs() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_SEARCH_BUGS,
+            payload: []
+        })
     }
 }

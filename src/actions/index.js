@@ -9,7 +9,10 @@ import {
     fetchCurrentBug,
     removeCurrentBug,
     updateBug,
-    reportBug
+    reportBug,
+    clearReportSuccessMessage,
+    searchAllBugs,
+    clearSearchBugs
 } from './bug';
 
 import {
@@ -30,5 +33,8 @@ export {
     fetchComments,
     postComment,
     deleteComment,
-    reportBug
+    reportBug,
+    clearReportSuccessMessage,
+    searchAllBugs,
+    clearSearchBugs
 }

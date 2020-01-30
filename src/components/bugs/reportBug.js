@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
-import ReportBugForm from '../bugs/reportBugForm';
+import ReportBugForm from './reportBugForm';
+import ReportBugSuccess from './reportBugSuccess'
 
 
 
@@ -22,14 +23,23 @@ class ReportBug extends Component {
               linkOneName="Dashboard"
               logOut={() =>this.props.logout()}
             />
+            {this.props.reportBugMessage.length > 0 ? 
+              <ReportBugSuccess 
+                className="report-bug__success"
+                message={this.props.reportBugMessage}
+                onClick={this.props.clearReportSuccessMessage}
+              /> :
               <ReportBugForm
                 className="report-bug__form"
                 user={this.props.user}
                 token={this.props.userToken}
                 reportBug={this.props.reportBug}
-                message={this.props.reportBugMessage}
                 error={this.props.reportBugError}
-              />
+              /> 
+            }
+
+
+
         </div>
     )
 }
