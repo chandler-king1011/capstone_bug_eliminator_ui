@@ -3,7 +3,8 @@ import {
     LOGOUT_USER,
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
-    REGISTER_FAILED 
+    REGISTER_FAILED,
+    LEAVE_GROUP
 } from '../actions/types';
 
 const initialState = {
@@ -50,6 +51,12 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 userFailureMessage: action.payload.userFailureMessage
+            }
+    
+        case LEAVE_GROUP: 
+            return {
+                ...state,
+                user: action.payload
             }
 
         default: 

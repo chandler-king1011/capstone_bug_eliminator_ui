@@ -37,6 +37,9 @@ class DashBoard extends Component {
               {id: 4, title: "Search Bugs", onClick: () => history.push("/search-bugs"), icon: "search"}
             ]}
             joinOrg = {this.props.user.users_organization_id === null ? true : false}
+            leaveGroup = {this.props.leaveGroup}
+            token= {this.props.userToken}
+            userId= {this.props.user.users_id}
           /> 
           <div className="dash-board__body-wrapper">
             {bugHeader()}

@@ -1,7 +1,8 @@
 import { 
     login,
     logout,
-    register
+    register,
+    leaveGroup
 } from './user';
 import { 
     fetchUserBugs, 
@@ -36,5 +37,6 @@ export {
     reportBug,
     clearReportSuccessMessage,
     searchAllBugs,
-    clearSearchBugs
+    clearSearchBugs,
+    leaveGroup
 }

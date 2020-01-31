@@ -23,7 +23,7 @@ class DashboardNavbar extends Component {
                 <FontAwesomeIcon icon={"sign-in-alt"} className="navbar-link__icon"/>
                 <div className="navbar-link__title">Join Group</div>
             </a> :
-            <a className="navbar-link" onClick={() => console.log("leave")} key={5}>
+            <a className="navbar-link" onClick={() => this.props.leaveGroup(this.props.userId, this.props.token)} key={5}>
                 <FontAwesomeIcon icon={"sign-out-alt"} className="navbar-link__icon"/>
                 <div className="navbar-link__title">Leave Group</div>
             </a>            

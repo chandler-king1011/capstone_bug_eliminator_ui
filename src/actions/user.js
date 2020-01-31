@@ -7,7 +7,8 @@ import {
     LOGOUT_USER,
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
-    REGISTER_FAILED
+    REGISTER_FAILED,
+    LEAVE_GROUP
 } from './types';
 
 export function login(userCredentials) {
@@ -90,4 +91,22 @@ export function register(userObject) {
         });
     });
  }
+}
+
+export function leaveGroup(userId, token) {
+    return function(dispatch) {
+        axios({
+            method: "put",
+            url: `https://api-capstone-bug-tracker.herokuapp.com/users/leave-org/${userId}`,
+            headers: {'auth-token': token}
+        }).then(response => {
+            console.log(response);
+            dispatch({
+                type: LEAVE_GROUP,
+                payload: response.data.results
+            });
+        }).catch(error => {
+            console.log(error);
+        })
+    }
 }
