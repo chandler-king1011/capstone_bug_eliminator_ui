@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Modal from 'react-modal';
 
 import * as actions from '../../actions';
 import history from '../../history';
@@ -8,15 +9,52 @@ import DashboardHeader from './dashboardHeader';
 import DashboardNavbar from './dashboardNavbar';
 import bugHeader from './dashboardBugHeader';
 import BugTag from '../bugs/bugTag';
+import BugSorter from '../bugs/bugSorter';
+import ModalContent from '../auth/modelContent';
+
+const customStyles = {
+  content : {
+    top: "50%", 
+    left: "50%",
+    right: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "800px",
+    backgroundColor: "#050202",
+  }
+};
+
+Modal.setAppElement('.app-wrapper');
 
 class DashBoard extends Component {
   constructor() {
   super();
+
+  this.state = {
+    modalIsOpen: false
+  }
+
+  this.openModal=this.openModal.bind(this);
+  this.closeModal=this.closeModal.bind(this);
 }
 
   componentWillMount() {
     this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
     this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
+  }
+
+
+  openModal() {
+    this.setState({
+      modalIsOpen: true
+    })
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false
+    })
+    this.props.clearModalMessages();
   }
 
 
@@ -37,11 +75,13 @@ class DashBoard extends Component {
               {id: 4, title: "Search Bugs", onClick: () => history.push("/search-bugs"), icon: "search"}
             ]}
             joinOrg = {this.props.user.users_organization_id === null ? true : false}
+            openModal= {this.openModal}
             leaveGroup = {this.props.leaveGroup}
             token= {this.props.userToken}
             userId= {this.props.user.users_id}
           /> 
           <div className="dash-board__body-wrapper">
+            <BugSorter className="dashboard__bug-sorter" />
             {bugHeader()}
             {this.props.userBugs.length > 0 ?
               this.props.userBugs.map(bug => {
@@ -52,19 +92,37 @@ class DashBoard extends Component {
              : <div className="dash-board__no-bugs">You currently have zero bugs assigned to you.</div>}
           </div>
 
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}
+            contentLabel="Example Modal"
+            style={customStyles}
+        >
+            <ModalContent
+              token={this.props.userToken}
+              userId={this.props.user.users_id}
+              onSubmit={this.props.joinGroup}
+              successMessage={this.props.groupSuccessMessage}
+              failureMessage={this.props.groupFailureMessage}
+              closeModal={this.closeModal}
+            />
+
+        </Modal>
         </div>
     )
 }
 }
 
 const mapStateToProps = (state) => {
-  const { user, userToken } = state.userReducer;
+  const { user, userToken, groupSuccessMessage, groupFailureMessage  } = state.userReducer;
   const { userBugs, organizationBugs } = state.bugReducer;
   return {
     user,
     userToken,
     userBugs,
-    organizationBugs
+    organizationBugs,
+    groupSuccessMessage,
+    groupFailureMessage
   }
 }
 

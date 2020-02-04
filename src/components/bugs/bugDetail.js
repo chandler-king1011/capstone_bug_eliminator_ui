@@ -83,8 +83,6 @@ class BugDetail extends Component {
                     <img src={this.props.currentBug.bugs_image_one} />
                     <img src={this.props.currentBug.bugs_image_two} />
                 </div>
-
-
             </div>
         </div>
     )

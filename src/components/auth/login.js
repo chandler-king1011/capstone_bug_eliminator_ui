@@ -19,12 +19,12 @@ class Login extends Component {
     this.props.login(userCredentials);
   }
 
-  componentWillMount() {
+  /*componentWillMount() {
     if (this.props.userToken != "") {
       history.push('/user-dashboard');
     }
 
-  }
+  } */
 
   render() {
     return (

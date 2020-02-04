@@ -1,0 +1,110 @@
+.join-group {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $red;
+
+    .join-group__title {
+        text-align: center;
+        width: 100%;
+        color: $white;
+        padding-bottom: 15px;
+        font-size: 2em;
+        font-family: "Raleway", sans-serif;
+        border-bottom: 1px #F50022 solid;
+    }
+
+    .join-group__failure-message {
+        color: $red;
+        font-size: 1.5em;
+        font-family: $paragraph;
+        font-weight: 600;
+    }
+
+    .join-group__success {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        .join-group__success-message {
+            color: $white;
+            font-size: 1.5em;
+            font-family: $paragraph;
+        }
+        .join-group__success-button {
+            height: 50px;
+            width: 400px;
+            border:none;
+            border-radius: 25px;
+            font-size: 1.5em;
+            font-family: $paragraph;
+            color: $white;
+            background-color: $grey;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+
+            
+            &:hover {
+                color: $silver;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+
+
+    .join-group-form {
+        height: 100%;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+
+            .join-group-form__input {
+                padding-left: 20px;
+                width: 400px;
+                height: 35px;
+                border: none;
+                border-radius: 25px;
+                color: $black;
+                background-color: $white;
+                font-family: "Ubuntu", sans-serif;
+                transition: 0.3s ease-in-out;
+
+                &:focus {
+                    outline: none;
+                    background-color: $grey;
+                    color: $silver;
+                }
+            }
+
+            .join-group-form__button {
+                height: 50px;
+                width: 400px;
+                border:none;
+                border-radius: 25px;
+                font-size: 1.5em;
+                font-family: $paragraph;
+                color: $white;
+                background-color: $grey;
+                transition: 0.3s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    color: $silver;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+    }
+}

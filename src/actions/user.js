@@ -8,7 +8,10 @@ import {
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
-    LEAVE_GROUP
+    LEAVE_GROUP,
+    JOIN_GROUP,
+    WRONG_GROUP_CREDENTIALS,
+    CLEAR_MODAL_MESSAGES
 } from './types';
 
 export function login(userCredentials) {
@@ -93,6 +96,32 @@ export function register(userObject) {
  }
 }
 
+export function joinGroup(body, token) {
+    return function(dispatch) {
+        axios({
+            method: "post",
+            url: "https://api-capstone-bug-tracker.herokuapp.com/organization/login",
+            headers: {'auth-token': token},
+            data: body
+        }).then(response => {
+            if (response.data.status === 400) {
+                dispatch({
+                    type: WRONG_GROUP_CREDENTIALS,
+                    payload: response.data
+                })
+            } else {
+                dispatch({
+                    type: JOIN_GROUP,
+                    payload: response.data.results
+                })
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+}
+
 export function leaveGroup(userId, token) {
     return function(dispatch) {
         axios({
@@ -100,13 +129,21 @@ export function leaveGroup(userId, token) {
             url: `https://api-capstone-bug-tracker.herokuapp.com/users/leave-org/${userId}`,
             headers: {'auth-token': token}
         }).then(response => {
-            console.log(response);
             dispatch({
                 type: LEAVE_GROUP,
                 payload: response.data.results
             });
         }).catch(error => {
             console.log(error);
+        })
+    }
+}
+
+export function clearModalMessages() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_MODAL_MESSAGES,
+            payload: ""
         })
     }
 }

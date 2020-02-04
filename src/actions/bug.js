@@ -33,6 +33,7 @@ export function fetchUserBugs(userId, token) {
     }
 }
 
+
 export function fetchOrganizationBugs(organizationId, token) {
     return function(dispatch) {
         axios({
@@ -47,6 +48,32 @@ export function fetchOrganizationBugs(organizationId, token) {
         }).catch(error => {
             console.log(error);
         })
+    }
+}
+
+export function sortBugs(sorter, bugsToSort) {
+    return function(dispatch) {
+        
+        switch(sorter) {
+            case Status: 
+                bugsToSort.sort((a, b) => {
+                    let comparison = 0;
+                    statusA = a.bugs_status.toUpperCase();
+                    statusB= b.bugs_status.toUpperCase();
+                    if (statusA > statusB) {
+                        comparison = 1;
+                    } else if(statusA < statusB) {
+                        comparison = -1;
+                    }
+                    return comparison;
+                })
+
+            case Created:
+
+            case Severity:
+        }
+
+
     }
 }
 
@@ -67,6 +94,8 @@ export function fetchCurrentBug(bugId, token) {
         })
     }
 }
+
+
 
 export function removeCurrentBug() {
     return function(dispatch){

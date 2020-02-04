@@ -19,7 +19,7 @@ class DashboardNavbar extends Component {
                )
            })}
            {joinOrg === true ?
-            <a className="navbar-link" onClick={() => console.log("join")} key={5}>
+            <a className="navbar-link" onClick={() => this.props.openModal()} key={5}>
                 <FontAwesomeIcon icon={"sign-in-alt"} className="navbar-link__icon"/>
                 <div className="navbar-link__title">Join Group</div>
             </a> :

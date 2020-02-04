@@ -2,7 +2,9 @@ import {
     login,
     logout,
     register,
-    leaveGroup
+    leaveGroup,
+    joinGroup,
+    clearModalMessages
 } from './user';
 import { 
     fetchUserBugs, 
@@ -38,5 +40,7 @@ export {
     clearReportSuccessMessage,
     searchAllBugs,
     clearSearchBugs,
-    leaveGroup
+    leaveGroup,
+    joinGroup,
+    clearModalMessages
 }

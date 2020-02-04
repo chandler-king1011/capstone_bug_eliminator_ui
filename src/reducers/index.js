@@ -16,7 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   userReducer,
   bugReducer,
-  commentReducer
+  commentReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

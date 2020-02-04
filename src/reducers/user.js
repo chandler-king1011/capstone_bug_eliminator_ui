@@ -4,7 +4,10 @@ import {
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
-    LEAVE_GROUP
+    LEAVE_GROUP,
+    JOIN_GROUP,
+    WRONG_GROUP_CREDENTIALS,
+    CLEAR_MODAL_MESSAGES
 } from '../actions/types';
 
 const initialState = {
@@ -13,7 +16,9 @@ const initialState = {
     loginErrorText: "",
     LOGGED_IN: false,
     userSuccessMessage: "",
-    userFailureMessage: ""
+    userFailureMessage: "",
+    groupSuccessMessage: "",
+    groupFailureMessage: ""
 }
 
 export default function(state=initialState, action) {
@@ -37,7 +42,10 @@ export default function(state=initialState, action) {
                 ...state,
                 user: action.payload,
                 userToken: "",
-                LOGGED_IN: false
+                LOGGED_IN: false,
+                groupFailureMessage: "",
+                groupSuccessMessage: "",
+                groupMessage: ""
             }
 
         case REGISTER_USER:
@@ -56,7 +64,31 @@ export default function(state=initialState, action) {
         case LEAVE_GROUP: 
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                groupSuccessMessage: "",
+                groupFailureMessage: ""
+            }
+
+        case JOIN_GROUP: 
+            return {
+                ...state,
+                user: action.payload,
+                groupFailureMessage: "",
+                groupSuccessMessage: "Success! Click close to return to your dashboard."
+            }
+
+        case WRONG_GROUP_CREDENTIALS:
+            return {
+                ...state,
+                groupSuccessMessage: "",
+                groupFailureMessage: "Group name or password was wrong. Check with your administrator to ensure you have the correct credentials."
+            }
+        
+        case CLEAR_MODAL_MESSAGES: 
+            return {
+                ...state,
+                groupSuccessMessage: action.payload,
+                groupFailureMessage: action.payload
             }
 
         default: 
