@@ -13,7 +13,9 @@ import {
     CLEAR_REPORT_SUCCESS_MESSAGE,
     SEARCH_ALL_BUGS,
     CLEAR_SEARCH_BUGS,
-    NO_MATCHING_RESULTS
+    NO_MATCHING_RESULTS,
+    SORT_USER_BUGS,
+    SORT_GROUP_BUGS
 } from './types';
 
 export function fetchUserBugs(userId, token) {
@@ -33,7 +35,6 @@ export function fetchUserBugs(userId, token) {
     }
 }
 
-
 export function fetchOrganizationBugs(organizationId, token) {
     return function(dispatch) {
         axios({
@@ -51,29 +52,126 @@ export function fetchOrganizationBugs(organizationId, token) {
     }
 }
 
-export function sortBugs(sorter, bugsToSort) {
+export function sortUserBugs(sorter, userId, token) {
     return function(dispatch) {
-        
-        switch(sorter) {
-            case Status: 
-                bugsToSort.sort((a, b) => {
-                    let comparison = 0;
-                    statusA = a.bugs_status.toUpperCase();
-                    statusB= b.bugs_status.toUpperCase();
-                    if (statusA > statusB) {
-                        comparison = 1;
-                    } else if(statusA < statusB) {
-                        comparison = -1;
+                axios({
+                    method: 'get',
+                    url: `https://api-capstone-bug-tracker.herokuapp.com/bugs/user/${userId}`,
+                    headers: {'auth-token': token}
+                }).then(response => {
+
+                    if (sorter === "Status") {
+                        let statusBugs = response.data.sort((a, b) => {
+                            let statusA = a.bugs_status.toUpperCase();
+                            let statusB= b.bugs_status.toUpperCase();
+                            if (statusA > statusB) {
+                                return 1;
+                            } else if(statusA < statusB) {
+                                return -1;
+                            }
+                            return 0;
+                        })
+                        dispatch({
+                            type: SORT_USER_BUGS,
+                            payload: statusBugs
+                        });
                     }
-                    return comparison;
-                })
+                    if (sorter === "Severity"){
+                            let severityBugs = response.data.sort((a, b) => {
+                            let severityA = a.bugs_severity.toUpperCase();
+                            let severityB= b.bugs_severity.toUpperCase();
+                            if (severityA > severityB) {
+                                return 1;
+                            } else if(severityA < severityB) {
+                                return -1;
+                            }
+                            return 0;
+                        })
+                        dispatch({
+                            type: SORT_USER_BUGS,
+                            payload: severityBugs
+                        });
+                    }
+                    if (sorter === "Created") {
+                        let createdBugs = response.data.sort((a, b) => {
+                            if (a.bugs_created_date > b.bugs_created_date) {
+                                return 1;
+                            } else if(a.bugs_created_date < b.bugs_created_date) {
+                                return -1;
+                            }
+                            return 0;
+                        })
+                        dispatch({
+                            type: SORT_USER_BUGS,
+                            payload: createdBugs
+                        });
 
-            case Created:
+                    }
 
-            case Severity:
-        }
+                }).catch(error => {
+                    console.log(error);
+                }) 
+    }
+}
 
+export function sortGroupBugs(sorter, groupId, token) {
+    return function(dispatch) {
+                axios({
+                    method: 'get',
+                    url: `https://api-capstone-bug-tracker.herokuapp.com/bugs/organization/${groupId}`,
+                    headers: {'auth-token': token}
+                }).then(response => {
+                    if (sorter === "Status") {
+                        let statusBugs = response.data.sort((a, b) => {
+                            let statusA = a.bugs_status.toUpperCase();
+                            let statusB= b.bugs_status.toUpperCase();
+                            if (statusA > statusB) {
+                                return 1;
+                            } else if(statusA < statusB) {
+                                return -1;
+                            }
+                            return 0;
+                        })
+                        dispatch({
+                            type: SORT_GROUP_BUGS,
+                            payload: statusBugs
+                        });
+                    }
+                    if (sorter === "Severity"){
+                            let severityBugs = response.data.sort((a, b) => {
+                            let severityA = a.bugs_severity.toUpperCase();
+                            let severityB= b.bugs_severity.toUpperCase();
+                            if (severityA > severityB) {
+                                return 1;
+                            } else if(severityA < severityB) {
+                                return -1;
+                            }
+                            return 0;
+                        })
+                        dispatch({
+                            type: SORT_GROUP_BUGS,
+                            payload: severityBugs
+                        });
+                    }
+                    if (sorter === "Created") {
+                        let createdBugs = response.data.sort((a, b) => {
+                            if (a.bugs_created_date > b.bugs_created_date) {
+                                return 1;
+                            } else if(a.bugs_created_date < b.bugs_created_date) {
+                                return -1;
+                            }
+                            return 0;
+                        })
+                        dispatch({
+                            type: SORT_GROUP_BUGS,
+                            payload: createdBugs
+                        });
 
+                    }
+
+                }).catch(error => {
+                    console.log(error);
+                }) 
     }
 }
 
@@ -94,8 +192,6 @@ export function fetchCurrentBug(bugId, token) {
         })
     }
 }
-
-
 
 export function removeCurrentBug() {
     return function(dispatch){
@@ -139,7 +235,6 @@ export function updateBug(bug, bugId, token) {
   }
 }
 
-
 export function reportBug(bug, token){
     return function(dispatch) {
         axios({
@@ -165,7 +260,6 @@ export function reportBug(bug, token){
         }).catch(error => console.log(error));
     }
 }
-
 
 export function clearReportSuccessMessage() {
     return function(dispatch) {

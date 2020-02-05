@@ -15,7 +15,9 @@ import {
     reportBug,
     clearReportSuccessMessage,
     searchAllBugs,
-    clearSearchBugs
+    clearSearchBugs,
+    sortUserBugs,
+    sortGroupBugs
 } from './bug';
 
 import {
@@ -40,7 +42,10 @@ export {
     clearReportSuccessMessage,
     searchAllBugs,
     clearSearchBugs,
+    sortUserBugs,
+    sortGroupBugs,
     leaveGroup,
     joinGroup,
-    clearModalMessages
+    clearModalMessages,
+    
 }

@@ -64,7 +64,8 @@ class DashBoard extends Component {
           <DashboardHeader
             pageTitle="Dashboard"
             className="dashboard__header"   
-            linkOneName="Bug Tips?"
+            linkOneName="My Profile"
+            linkOne="/update-user"
             logOut={() =>this.props.logout()}
           />
           <DashboardNavbar
@@ -81,7 +82,13 @@ class DashBoard extends Component {
             userId= {this.props.user.users_id}
           /> 
           <div className="dash-board__body-wrapper">
-            <BugSorter className="dashboard__bug-sorter" />
+            <BugSorter 
+            className="dashboard__bug-sorter"
+            sortFunc={this.props.sortUserBugs}
+            bugs={this.props.userBugs}
+            token={this.props.userToken}
+            Id={this.props.user.users_id}
+            />
             {bugHeader()}
             {this.props.userBugs.length > 0 ?
               this.props.userBugs.map(bug => {

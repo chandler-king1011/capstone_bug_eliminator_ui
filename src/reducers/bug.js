@@ -10,7 +10,9 @@ import {
     CLEAR_REPORT_SUCCESS_MESSAGE,
     SEARCH_ALL_BUGS,
     CLEAR_SEARCH_BUGS,
-    NO_MATCHING_RESULTS
+    NO_MATCHING_RESULTS,
+    SORT_USER_BUGS,
+    SORT_GROUP_BUGS
  } from '../actions/types';
 
 const initialState = {
@@ -90,6 +92,18 @@ export default function(state=initialState, action) {
                 ...state,
                 noBugsMessage: "",
                 bugSearchBugs: action.payload
+            }
+
+        case SORT_USER_BUGS: 
+            return {
+                ...state,
+                userBugs: action.payload
+            }
+        case SORT_GROUP_BUGS:
+            return {
+                ...state,
+                organizationBugs: action.payload
+
             }
         default: 
             return state

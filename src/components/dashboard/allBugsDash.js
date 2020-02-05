@@ -9,7 +9,8 @@ import DashboardHeader from './dashboardHeader';
 import DashboardNavbar from './dashboardNavbar';
 import bugHeader from './dashboardBugHeader';
 import BugTag from '../bugs/bugTag';
-import ModalContent from '../auth/modelContent'
+import ModalContent from '../auth/modelContent';
+import BugSorter from '../bugs/bugSorter';
 
 const customStyles = {
   content : {
@@ -63,7 +64,8 @@ componentWillMount() {
           <DashboardHeader
             pageTitle="Dashboard"
             className="dashboard__header"   
-            linkOneName="Bug Tips?"
+            linkOneName="My Profile"
+            linkOne="/update-user"
             logOut={() =>this.props.logout()}
           />
           <DashboardNavbar
@@ -80,6 +82,13 @@ componentWillMount() {
             userId= {this.props.user.users_id}
           /> 
           <div className="dash-board__body-wrapper">
+            <BugSorter 
+            className="dashboard__bug-sorter"
+            sortFunc={this.props.sortGroupBugs}
+            bugs={this.props.userBugs}
+            token={this.props.userToken}
+            Id={this.props.user.users_organization_id}
+            />
             {bugHeader()}
             {this.props.organizationBugs.length > 0 ?
               this.props.organizationBugs.map(bug => {
