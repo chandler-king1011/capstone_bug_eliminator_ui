@@ -4,10 +4,13 @@ import {
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
+    UPDATE_USER_DATA,
+    UPDATE_USER_ERROR,
     LEAVE_GROUP,
     JOIN_GROUP,
     WRONG_GROUP_CREDENTIALS,
-    CLEAR_MODAL_MESSAGES
+    CLEAR_MODAL_MESSAGES,
+    CLEAR_USER_UPDATE_MODAL
 } from '../actions/types';
 
 const initialState = {
@@ -18,7 +21,9 @@ const initialState = {
     userSuccessMessage: "",
     userFailureMessage: "",
     groupSuccessMessage: "",
-    groupFailureMessage: ""
+    groupFailureMessage: "",
+    updateUserSuccessMessage: "",
+    updateUserFailureMessage: ""
 }
 
 export default function(state=initialState, action) {
@@ -45,13 +50,16 @@ export default function(state=initialState, action) {
                 LOGGED_IN: false,
                 groupFailureMessage: "",
                 groupSuccessMessage: "",
-                groupMessage: ""
+                groupMessage: "",
+                loginErrorText: ""
+
             }
 
         case REGISTER_USER:
             return {
                 ...state,
-                userSuccessMessage: action.payload.userSuccessMessage
+                userSuccessMessage: action.payload.userSuccessMessage,
+                userFailureMessage: ""
             }
 
 
@@ -59,6 +67,28 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 userFailureMessage: action.payload.userFailureMessage
+            }
+
+        case UPDATE_USER_DATA: 
+            return {
+                ...state,
+                user: action.payload,
+                updateUserFailureMessage: "",
+                updateUserSuccessMessage: "Your information was saved properly.",
+            }
+
+        case UPDATE_USER_ERROR:
+            return {
+                ...state,
+                updateUserSuccessMessage: "",
+                updateUserFailureMessage: action.payload
+            }
+
+        case CLEAR_USER_UPDATE_MODAL: 
+            return {
+                ...state,
+                updateUserSuccessMessage: "",
+                updateUserFailureMessage: ""
             }
     
         case LEAVE_GROUP: 

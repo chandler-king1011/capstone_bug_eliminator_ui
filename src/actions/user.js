@@ -8,10 +8,13 @@ import {
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
+    UPDATE_USER_DATA,
+    UPDATE_USER_ERROR,
     LEAVE_GROUP,
     JOIN_GROUP,
     WRONG_GROUP_CREDENTIALS,
-    CLEAR_MODAL_MESSAGES
+    CLEAR_MODAL_MESSAGES,
+    CLEAR_USER_UPDATE_MODAL
 } from './types';
 
 export function login(userCredentials) {
@@ -51,6 +54,40 @@ export function logout(){
             payload: {}
         })
         history.push("/");
+    }
+}
+
+export function updateUser(userObject, token, userId) {
+    return function(dispatch) {
+        axios({
+            method: "put",
+            url: `https://api-capstone-bug-tracker.herokuapp.com/users/update/${userId}`,
+            headers: {'auth-token': token},
+            data: userObject
+        }).then(response => {
+            if(response.data.status === 400) {
+                dispatch({
+                    type: UPDATE_USER_ERROR,
+                    payload: "An error occurred saving your changes. Please try again and make sure all fields are filled out completely."
+                })
+            } else {
+            dispatch({
+                type: UPDATE_USER_DATA,
+                payload: response.data.message[0]
+            })
+          }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+}
+
+export function clearUpdateUserModal() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_USER_UPDATE_MODAL,
+            payload: ""
+    })
     }
 }
 
@@ -147,3 +184,4 @@ export function clearModalMessages() {
         })
     }
 }
+

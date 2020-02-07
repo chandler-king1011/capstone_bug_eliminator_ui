@@ -2,9 +2,11 @@ import {
     login,
     logout,
     register,
+    updateUser,
     leaveGroup,
     joinGroup,
-    clearModalMessages
+    clearModalMessages,
+    clearUpdateUserModal
 } from './user';
 import { 
     fetchUserBugs, 
@@ -30,6 +32,7 @@ export {
     login,
     logout,
     register,
+    updateUser,
     fetchUserBugs,
     fetchOrganizationBugs,
     fetchCurrentBug,
@@ -47,5 +50,6 @@ export {
     leaveGroup,
     joinGroup,
     clearModalMessages,
+    clearUpdateUserModal
     
 }

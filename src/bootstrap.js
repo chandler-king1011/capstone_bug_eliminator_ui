@@ -18,7 +18,7 @@ import "./style/main.scss";
 import history from "./history";
 import Login from "./components/auth/login";
 import SignUp from "./components/auth/signUp";
-import UserProfile from "./components/user/userUpdates";
+import UserProfile from "./components/user/userProfile";
 import DashBoard from "./components/dashboard/dashboard";
 import AllBugsDash from "./components/dashboard/allBugsDash";
 import ReportBug from "./components/bugs/reportBug";
