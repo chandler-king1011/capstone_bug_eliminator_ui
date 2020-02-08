@@ -10,6 +10,8 @@ import {
     REGISTER_FAILED,
     UPDATE_USER_DATA,
     UPDATE_USER_ERROR,
+    PASSWORD_UPDATED,
+    PASSWORD_UPDATED_FAILED,
     LEAVE_GROUP,
     JOIN_GROUP,
     WRONG_GROUP_CREDENTIALS,
@@ -88,6 +90,31 @@ export function clearUpdateUserModal() {
             type: CLEAR_USER_UPDATE_MODAL,
             payload: ""
     })
+    }
+}
+
+export function updateUserPassword(bodyData, token, userId) {
+    return function(dispatch) {
+        axios({
+            method: "put",
+            url: `https://api-capstone-bug-tracker.herokuapp.com/users/update-password/${userId}`,
+            headers: {"auth-token": token},
+            data: bodyData
+        }).then(response => {
+            if(response.data.status === 200) {
+                dispatch({
+                    type: PASSWORD_UPDATED,
+                    payload: response.data.message
+                })
+            } else if(response.data.status === 400) {
+                dispatch({
+                    type: PASSWORD_UPDATED_FAILED,
+                    payload: response.data.message
+                })
+            }
+        }).catch(error => {
+            console.log(error);
+        })
     }
 }
 

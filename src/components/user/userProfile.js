@@ -6,6 +6,7 @@ import * as actions from '../../actions';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
 import UserUpdateForm from './userUpdateForm';
+import UpdatePassword from './updatePassword';
 
 const customStyles = {
   content : {
@@ -60,21 +61,32 @@ class UserProfile extends Component {
         pageTitle={`Welcome ${this.props.user.users_first_name}!`}
         />
 
-        <UserUpdateForm 
-        user={this.props.user}
-        updateUser={this.props.updateUser}
-        token={this.props.userToken}
-        openModal={this.openModal}
-        />
+        <div className="user-profile__body">
+          <UserUpdateForm 
+          user={this.props.user}
+          updateUser={this.props.updateUser}
+          token={this.props.userToken}
+          openModal={this.openModal}
+          />
 
-        <Modal
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}
-            contentLabel="Example Modal"
-            style={customStyles}
-        >
-          {this.props.updateUserSuccessMessage.length > 1 ? <div className="user-profile__modal-success">{this.props.updateUserSuccessMessage}</div> : <div className="user-profile__modal-failure">{this.props.updateUserFailureMessage}</div>  }
-        </Modal>
+          <UpdatePassword 
+          updateUserPassword={this.props.updateUserPassword}
+          token={this.props.userToken}
+          userId={this.props.user.users_id}
+          openModal={this.openModal}
+          />
+
+          
+
+          <Modal
+              isOpen={this.state.modalIsOpen}
+              onRequestClose={this.closeModal}
+              contentLabel="Example Modal"
+              style={customStyles}
+          >
+            {this.props.updateUserSuccessMessage.length > 1 ? <div className="user-profile__modal-success">{this.props.updateUserSuccessMessage}</div> : <div className="user-profile__modal-failure">{this.props.updateUserFailureMessage}</div>  }
+          </Modal>
+        </div>
     </div>
     )
 }

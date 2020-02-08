@@ -5,3 +5,12 @@
 .user-profile__modal-failure{
     color: $red;
 }
+
+.user-profile {
+    .user-profile__body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+}

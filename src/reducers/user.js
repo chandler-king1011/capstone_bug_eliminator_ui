@@ -6,6 +6,8 @@ import {
     REGISTER_FAILED,
     UPDATE_USER_DATA,
     UPDATE_USER_ERROR,
+    PASSWORD_UPDATED,
+    PASSWORD_UPDATED_FAILED,
     LEAVE_GROUP,
     JOIN_GROUP,
     WRONG_GROUP_CREDENTIALS,
@@ -79,6 +81,20 @@ export default function(state=initialState, action) {
 
         case UPDATE_USER_ERROR:
             return {
+                ...state,
+                updateUserSuccessMessage: "",
+                updateUserFailureMessage: action.payload
+            }
+
+        case PASSWORD_UPDATED:
+            return {
+                ...state,
+                updateUserFailureMessage: "",
+                updateUserSuccessMessage: action.payload
+            }
+        
+        case PASSWORD_UPDATED_FAILED:
+            return{
                 ...state,
                 updateUserSuccessMessage: "",
                 updateUserFailureMessage: action.payload
