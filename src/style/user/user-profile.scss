@@ -1,9 +1,17 @@
 .user-profile__modal-success{
+    text-align: center;
+    font-size: 2em;
     color: $white;
 }
 
 .user-profile__modal-failure{
+    text-align: center;
+    font-size: 2em;
     color: $red;
+}
+
+.ReactModal__Content {
+    border-radius: 5px;
 }
 
 .user-profile {

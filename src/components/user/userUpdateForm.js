@@ -54,7 +54,7 @@ class UserUpdateForm extends Component {
 
   render() {
     return(
-    <form onSubmit={this.onSubmit}>
+    <form className="update-form" onSubmit={this.onSubmit}>
         {FormTitle("update-form__title", "Update User Information")}
         <input  className="update-form__input" onChange={this.onChange} value={this.state.users_first_name} placeholder={"First Name"} type="text" name="users_first_name"/>
         <input className="update-form__input" onChange={this.onChange} value={this.state.users_last_name} placeholder={"Last Name"} type="text" name="users_last_name"/>

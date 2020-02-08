@@ -23,9 +23,6 @@ class CommentTag extends Component {
     } = this.props.comment;
 
     const userId = this.props.userId;
-
-    console.log(userId);
-    console.log(comments_users_id);
      return(
         <div className="comment-tag">
             <div className="comment-tag__top-wrapper">

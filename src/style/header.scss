@@ -1,8 +1,8 @@
 .header {
     height: 110px;
     background-color: $black;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
 
     .header__icon {
@@ -12,12 +12,14 @@
     }
     
     h1 {
+        justify-self: center;
         color: $red;
         font-family: $title;
         font-size: 3em;
     }
 
     .header_links {
+        justify-self: end;
         height: 80px;
         margin: 15px;
         display: flex;

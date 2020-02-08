@@ -55,10 +55,10 @@ class UpdatePassword extends Component {
  
   render() {
     return(
-        <form onSubmit={this.onSubmit}>
+        <form className="update-password" onSubmit={this.onSubmit}>
             {FormTitle("update-password__title", "Update Password")}
             {this.state.passwordMismatch.length > 1 ? 
-            <div>{this.state.passwordMismatch}</div> :
+            <div className="update-password__mismatch">{this.state.passwordMismatch}</div> :
             null
             }
             <input  className="update-password__input" onChange={this.onChange} value={this.state.currentPassword} placeholder={"Current Password"} type="password" name="currentPassword"/>
