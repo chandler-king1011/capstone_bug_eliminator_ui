@@ -12,6 +12,15 @@
 
 .ReactModal__Content {
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .user-profile-modal__spinner {
+        justify-self: center;
+        color: $red;
+        font-size: 3em;
+    }
 }
 
 .user-profile {
@@ -21,4 +30,6 @@
     justify-content: center;
     align-items: center;
 }
+
+
 }

@@ -14,11 +14,11 @@ library.add(faUser, faUsers, faBug, faSearch, faSignInAlt, faSignOutAlt, faSpinn
 
 import reducers from "./reducers";
 import "./style/main.scss";
-
 import history from "./history";
 import Login from "./components/auth/login";
 import SignUp from "./components/auth/signUp";
 import UserProfile from "./components/user/userProfile";
+import RegisterGroup from './components/user/registerGroup';
 import DashBoard from "./components/dashboard/dashboard";
 import AllBugsDash from "./components/dashboard/allBugsDash";
 import ReportBug from "./components/bugs/reportBug";
@@ -43,6 +43,7 @@ function main() {
           <Route path="/user-dashboard" component={DashBoard} />
           <Route path="/organization-dashboard" component={AllBugsDash} />
           <Route path="/update-user" component={UserProfile} />
+          <Route path="/register-group" component={RegisterGroup} />
           <Route path="/bug-detail/:slug" component={BugDetail}/>
           <Route path="/report-bug" component={ReportBug} />
           <Route path="/search-bugs" component={SearchBugs} />

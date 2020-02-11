@@ -11,6 +11,7 @@ class DashboardNavbar extends Component {
     return(
         <div className="dashboard__navbar">
            {links.map(link => {
+               
                return(
                <a className="navbar-link" onClick={link.onClick} key={link.id}>
                    <FontAwesomeIcon icon={link.icon} className="navbar-link__icon"/>

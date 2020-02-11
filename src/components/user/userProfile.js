@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as actions from '../../actions';
 
@@ -60,6 +61,7 @@ class UserProfile extends Component {
         linkOne="/user-dashboard" 
         linkOneName="Dashboard"
         pageTitle={`Welcome ${this.props.user.users_first_name}!`}
+        logOut={() =>this.props.logout()}
         />
 
         <div className="user-profile__body">
@@ -85,7 +87,10 @@ class UserProfile extends Component {
               contentLabel="Example Modal"
               style={customStyles}
           >
-            {this.props.updateUserSuccessMessage.length > 1 ? <div className="user-profile__modal-success">{this.props.updateUserSuccessMessage}</div> : <div className="user-profile__modal-failure">{this.props.updateUserFailureMessage}</div>  }
+            {this.props.updateUserSuccessMessage.length > 1 ? <div className="user-profile__modal-success">{this.props.updateUserSuccessMessage}</div> :
+            this.props.updateUserFailureMessage.length > 1 ? <div className="user-profile__modal-failure">{this.props.updateUserFailureMessage}</div> : 
+            <FontAwesomeIcon className="user-profile-modal__spinner" icon="spinner" spin />
+            }
           </Modal>
         </div>
     </div>

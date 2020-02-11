@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import * as actions from "../../actions";
+import history from '../../history';
 
 import Header from '../header';
 import Footer from '../footer';
@@ -21,6 +22,12 @@ class SignUp extends Component {
   handleFormSubmit(userObject) {
     this.props.register(userObject);
   }
+
+  componentWillMount() {
+    if (this.props.userToken != "") {
+      history.push('/user-dashboard');
+    }
+  } 
 
 
   render() {
@@ -46,7 +53,8 @@ class SignUp extends Component {
 const mapStateToProps = (state) => {
   return {
     userSuccessMessage: state.userReducer.userSuccessMessage,
-    userFailureMessage: state.userReducer.userFailureMessage
+    userFailureMessage: state.userReducer.userFailureMessage,
+    userToken: state.userReducer.userToken
   }
 }
 

@@ -106,5 +106,14 @@
                 }
             }
 
+            .join-group-form__register-wrapper{
+                .join-group-form__register-group {
+                    color: $silver;
+                    font-family: $paragraph;
+                    font-size: 1.5em;
+                    cursor: pointer;
+                }
+            }
+
     }
 }

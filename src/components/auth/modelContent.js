@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+import history from '../../history';
 import FormTitle from '../formTitle';
 
 
@@ -64,6 +66,9 @@ class ModalContent extends Component {
             />
 
           <button type="submit" className="join-group-form__button">Submit</button>
+          <div className="join-group-form__register-wrapper">
+            <a className="join-group-form__register-group" onClick={() => history.push('/register-group')}>Want to register your own group? Click here!</a>
+          </div>
         </form>
         }
       </div>

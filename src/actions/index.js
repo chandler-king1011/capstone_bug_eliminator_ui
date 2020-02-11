@@ -6,8 +6,10 @@ import {
     updateUserPassword,
     leaveGroup,
     joinGroup,
+    registerGroup,
     clearModalMessages,
-    clearUpdateUserModal
+    clearUpdateUserModal,
+    clearRegisterGroupModal
 } from './user';
 import { 
     fetchUserBugs, 
@@ -51,7 +53,8 @@ export {
     sortGroupBugs,
     leaveGroup,
     joinGroup,
+    registerGroup,
     clearModalMessages,
-    clearUpdateUserModal
-    
+    clearUpdateUserModal,
+    clearRegisterGroupModal
 }

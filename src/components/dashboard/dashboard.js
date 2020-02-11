@@ -19,7 +19,7 @@ const customStyles = {
     right: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "800px",
+    width: "550px",
     backgroundColor: "#050202",
   }
 };
@@ -36,6 +36,7 @@ class DashBoard extends Component {
 
   this.openModal=this.openModal.bind(this);
   this.closeModal=this.closeModal.bind(this);
+  this.createNavLinks=this.createNavLinks.bind(this);
 }
 
   componentWillMount() {
@@ -55,6 +56,28 @@ class DashBoard extends Component {
       modalIsOpen: false
     })
     this.props.clearModalMessages();
+    this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
+  }
+
+  createNavLinks() {
+    if (this.props.user.users_organization_id === null) {
+      return (
+        [
+          {id: 1, title: `My Active Bug (${this.props.userBugs.length})`, onClick: () => this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken), icon: "user"},
+          {id: 3, title: "Report a Bug", onClick: () => history.push("/report-bug"), icon: "bug"},
+          {id: 4, title: "Search Bugs", onClick: () => history.push("/search-bugs"), icon: "search"}
+        ]
+      )
+    } else {
+      return (
+        [
+          {id: 1, title: `My Active Bug (${this.props.userBugs.length})`, onClick: () => this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken), icon: "user"},
+          {id: 2, title: `All Bugs (${this.props.organizationBugs.length})`, onClick: () => history.push('/organization-dashboard'), icon: "users"},
+          {id: 3, title: "Report a Bug", onClick: () => history.push("/report-bug"), icon: "bug"},
+          {id: 4, title: "Search Bugs", onClick: () => history.push("/search-bugs"), icon: "search"}
+        ]
+      )
+    }
   }
 
 
@@ -69,12 +92,7 @@ class DashBoard extends Component {
             logOut={() =>this.props.logout()}
           />
           <DashboardNavbar
-            links = {[
-              {id: 1, title: `My Active Bug (${this.props.userBugs.length})`, onClick: () => this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken), icon: "user"},
-              {id: 2, title: `All Bugs (${this.props.organizationBugs.length})`, onClick: () => history.push('/organization-dashboard'), icon: "users"},
-              {id: 3, title: "Report a Bug", onClick: () => history.push("/report-bug"), icon: "bug"},
-              {id: 4, title: "Search Bugs", onClick: () => history.push("/search-bugs"), icon: "search"}
-            ]}
+            links = {this.createNavLinks()}
             joinOrg = {this.props.user.users_organization_id === null ? true : false}
             openModal= {this.openModal}
             leaveGroup = {this.props.leaveGroup}

@@ -15,8 +15,11 @@ import {
     LEAVE_GROUP,
     JOIN_GROUP,
     WRONG_GROUP_CREDENTIALS,
+    FAILED_TO_REGISTER_GROUP,
+    SUCCESSFULLY_REGISTERED_GROUP,
     CLEAR_MODAL_MESSAGES,
-    CLEAR_USER_UPDATE_MODAL
+    CLEAR_USER_UPDATE_MODAL,
+    CLEAR_REGISTER_GROUP_MODAL
 } from './types';
 
 export function login(userCredentials) {
@@ -199,6 +202,40 @@ export function leaveGroup(userId, token) {
             });
         }).catch(error => {
             console.log(error);
+        })
+    }
+}
+
+export function registerGroup(groupData, token) {
+    return function(dispatch) {
+        axios({
+            method: "post",
+            url:"https://api-capstone-bug-tracker.herokuapp.com/organization/register",
+            headers: {'auth-token': token},
+            data: groupData
+        }).then(response => {
+            if (response.data.status === 200) {
+                dispatch({
+                    type: SUCCESSFULLY_REGISTERED_GROUP,
+                    payload: response.data.results
+                })
+            } else {
+                dispatch({
+                    type: FAILED_TO_REGISTER_GROUP,
+                    payload: response.data.message
+                })
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+}
+
+export function clearRegisterGroupModal() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_REGISTER_GROUP_MODAL,
+            payload: ""
         })
     }
 }

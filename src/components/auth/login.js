@@ -23,7 +23,6 @@ class Login extends Component {
     if (this.props.userToken != "") {
       history.push('/user-dashboard');
     }
-
   } 
 
   render() {
