@@ -43,11 +43,13 @@ class BugDetail extends Component {
     return(
         <div className="bug-detail">
             <DashboardHeader
-                pageTitle="Bug Detail"
+                pageTitle="Bug Details"
                 className="bug-detail__header"   
                 linkOne="/user-dashboard"
-                linkOneName="Back To Dashboard"
+                linkOneName="Dashboard"
                 logOut={() =>this.props.logout()}
+                user={this.props.user}
+                usersGroup={this.props.usersGroup}
             />
             <BugDetailHeader className="bug-detail__bug-header" bugTitle={this.props.currentBug.bugs_title}/>
             <div className="bug-detail__body-wrapper">
@@ -90,14 +92,15 @@ class BugDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { userToken, user } = state.userReducer;
+    const { userToken, user, usersGroup } = state.userReducer;
     const { currentBug } = state.bugReducer;
     const { currentBugComments } = state.commentReducer;
     return {
         currentBug,
         currentBugComments,
         userToken,
-        user
+        user,
+        usersGroup
     }
 }
 

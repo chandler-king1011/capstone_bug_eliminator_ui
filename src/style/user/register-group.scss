@@ -1,0 +1,25 @@
+.register-group {
+    height: 100vh;
+    .register-group__body {
+        display: grid;
+        grid-template-columns: 1fr;
+        height: calc(100vh - 110px);
+
+        .register-group__form {
+            justify-self: center;
+            align-self: center;
+        }
+    }
+}
+
+.group-form__modal-success {
+    text-align: center;
+    font-size: 2em;
+    color: $white;
+}
+
+.group-form__modal-failure {
+    text-align: center;
+    font-size: 2em;
+    color: $red;
+}

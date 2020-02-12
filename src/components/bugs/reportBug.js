@@ -22,6 +22,9 @@ class ReportBug extends Component {
               linkOne="/user-dashboard"
               linkOneName="Dashboard"
               logOut={() =>this.props.logout()}
+              user={this.props.user}
+              token={this.props.userToken}
+              usersGroup= {this.props.usersGroup}
             />
             {this.props.reportBugMessage.length > 0 ? 
               <ReportBugSuccess 
@@ -46,13 +49,14 @@ class ReportBug extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {user, userToken} = state.userReducer;
+    const {user, userToken, usersGroup } = state.userReducer;
     const { reportBugMessage, reportBugError } = state.bugReducer;
     return {
       user,
       userToken,
       reportBugMessage,
-      reportBugError
+      reportBugError,
+      usersGroup
     }
 }
 

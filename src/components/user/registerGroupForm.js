@@ -36,6 +36,7 @@ class RegisterGroupForm extends Component {
         organization_creator_id: this.props.userId
       }
       this.props.registerGroup(groupData, this.props.token);
+      this.props.openModal();
     } else {
         this.setState({
             passwordMismatch: "Passwords do not match."
@@ -56,6 +57,7 @@ class RegisterGroupForm extends Component {
               name="organization_name" 
               value={this.state.organization_name}
               onChange={this.onChange}
+              placeholder="Group Name"
             />
             <input 
               type="password"
@@ -63,6 +65,7 @@ class RegisterGroupForm extends Component {
               name="organization_password"
               value={this.state.organziation_password}
               onChange={this.onChange}
+              placeholder="Group Password"
             />
             <input 
               type="password"
@@ -70,8 +73,9 @@ class RegisterGroupForm extends Component {
               name="organization_password_confirm"
               value={this.state.organzation_password_confirm}
               onChange={this.onChange} 
+              placeholder="Confirm Group Password"
             />
-            <button type="submit">Register Group</button>
+            <button className="group-form__button" type="submit">Register Group</button>
         </form>
     )
 }

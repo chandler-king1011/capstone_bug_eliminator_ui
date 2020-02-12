@@ -16,9 +16,10 @@ const customStyles = {
     right: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "500px",
+    width: "460px",
     height: "50px",
     backgroundColor: "#050202",
+    borderRadius: "10px"
   }
 };
 
@@ -62,8 +63,10 @@ class UserProfile extends Component {
         linkOneName="Dashboard"
         pageTitle={`Welcome ${this.props.user.users_first_name}!`}
         logOut={() =>this.props.logout()}
+        user={this.props.user}
+        token={this.props.userToken}
+        usersGroup={this.props.usersGroup}
         />
-
         <div className="user-profile__body">
           <UserUpdateForm 
           user={this.props.user}
@@ -71,16 +74,12 @@ class UserProfile extends Component {
           token={this.props.userToken}
           openModal={this.openModal}
           />
-
           <UpdatePassword 
           updateUserPassword={this.props.updateUserPassword}
           token={this.props.userToken}
           userId={this.props.user.users_id}
           openModal={this.openModal}
           />
-
-          
-
           <Modal
               isOpen={this.state.modalIsOpen}
               onRequestClose={this.closeModal}
@@ -99,10 +98,11 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {user, userToken, updateUserSuccessMessage, updateUserFailureMessage} = state.userReducer;
+    const {user, userToken, updateUserSuccessMessage, updateUserFailureMessage, usersGroup} = state.userReducer;
     return {
         user,
         userToken,
+        usersGroup,
         updateUserSuccessMessage,
         updateUserFailureMessage
     }

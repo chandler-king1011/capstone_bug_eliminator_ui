@@ -55,6 +55,11 @@ closeModal() {
 componentWillMount() {
   this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
   this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
+  if (this.props.user.users_organization_id === null) {
+    return;
+} else {
+    this.props.getGroupName(this.props.user.users_organization_id, this.props.userToken);
+}
 }
 
 
@@ -67,6 +72,9 @@ componentWillMount() {
             linkOneName="My Profile"
             linkOne="/update-user"
             logOut={() =>this.props.logout()}
+            user={this.props.user}
+            token={this.props.userToken}
+            usersGroup={this.props.usersGroup}
           />
           <DashboardNavbar
             links = {[
@@ -122,10 +130,11 @@ componentWillMount() {
 }
 
 const mapStateToProps = (state) => {
-  const { user, userToken, groupSuccessMessage, groupFailureMessage } = state.userReducer;
+  const { user, userToken, groupSuccessMessage, groupFailureMessage, usersGroup} = state.userReducer;
   const { organizationBugs, userBugs } = state.bugReducer;
   return {
     userBugs,
+    usersGroup,
     organizationBugs,
     userToken,
     user,

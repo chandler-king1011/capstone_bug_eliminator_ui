@@ -9,7 +9,8 @@ import {
     registerGroup,
     clearModalMessages,
     clearUpdateUserModal,
-    clearRegisterGroupModal
+    clearRegisterGroupModal,
+    getGroupName
 } from './user';
 import { 
     fetchUserBugs, 
@@ -56,5 +57,6 @@ export {
     registerGroup,
     clearModalMessages,
     clearUpdateUserModal,
-    clearRegisterGroupModal
+    clearRegisterGroupModal,
+    getGroupName
 }

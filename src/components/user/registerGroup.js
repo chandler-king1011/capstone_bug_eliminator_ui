@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as actions from '../../actions';
 
@@ -14,9 +15,10 @@ const customStyles = {
       right: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "500px",
-      height: "500px",
+      width: "460px",
+      height: "50px",
       backgroundColor: "#050202",
+      borderRadius: "10px"
     }
   };
   
@@ -62,23 +64,31 @@ class RegisterGroup extends Component {
               className="register-group__header"
               linkOne="/user-dashboard" 
               linkOneName="Dashboard"
-              logOut={() =>this.props.logout()} />
-
-            <RegisterGroupForm
-              className="register-group__form"
-              userId={this.props.user.users_id}
+              logOut={() =>this.props.logout()} 
+              user={this.props.user}
               token={this.props.userToken}
-              registerGroup={this.props.registerGroup}
+              usersGroup={this.props.usersGroup}
             />
-
-            <Modal
-              isOpen={this.state.modalIsOpen}
-              onRequestClose={this.closeModal}
-              contentLabel="Register Group Modal"
-              style={customStyles}
-            >
-                Modal Content Goes Here.
-            </Modal>
+            <div className="register-group__body">
+              <RegisterGroupForm
+                className="register-group__form"
+                userId={this.props.user.users_id}
+                token={this.props.userToken}
+                registerGroup={this.props.registerGroup}
+                openModal={this.openModal}
+              />
+              <Modal
+                isOpen={this.state.modalIsOpen}
+                onRequestClose={this.closeModal}
+                contentLabel="Register Group Modal"
+                style={customStyles}
+              >
+              {this.props.registerGroupSuccess.length > 1 ? <div className="group-form__modal-success">{this.props.registerGroupSuccess}</div> :
+                this.props.registerGroupFailed.length > 1 ? <div className="group-form__modal-failure">{this.props.registerGroupFailed}</div> : 
+                <FontAwesomeIcon className="user-profile-modal__spinner" icon="spinner" spin />
+              }
+              </Modal>
+            </div>
               
         </div>
     )
@@ -86,11 +96,13 @@ class RegisterGroup extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { user, userToken, registerGroupMessage } = state.userReducer;
+    const { user, userToken, registerGroupSuccess, registerGroupFailed, usersGroup } = state.userReducer;
     return {
         user,
+        usersGroup,
         userToken,
-        registerGroupMessage
+        registerGroupSuccess,
+        registerGroupFailed
     }
 }
 

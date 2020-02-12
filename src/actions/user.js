@@ -19,8 +19,11 @@ import {
     SUCCESSFULLY_REGISTERED_GROUP,
     CLEAR_MODAL_MESSAGES,
     CLEAR_USER_UPDATE_MODAL,
-    CLEAR_REGISTER_GROUP_MODAL
+    CLEAR_REGISTER_GROUP_MODAL,
+    SET_GROUP_NAME
 } from './types';
+
+
 
 export function login(userCredentials) {
     return function(dispatch) {
@@ -51,6 +54,24 @@ export function login(userCredentials) {
     });
  }
 }
+
+export function getGroupName(groupId, token) {
+    return function(dispatch) {
+    axios({
+        method: "get",
+        url: `https://api-capstone-bug-tracker.herokuapp.com/organization/${groupId}`,
+        headers: {'auth-token': token}
+    }).then(response => {
+        dispatch({
+            type: SET_GROUP_NAME,
+            payload: response.data
+        })
+    }).catch(error => {
+        console.log(error);
+    })
+  }
+}
+
 
 export function logout(){
     return function(dispatch) {

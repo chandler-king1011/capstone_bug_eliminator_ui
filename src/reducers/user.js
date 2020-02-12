@@ -15,11 +15,13 @@ import {
     WRONG_GROUP_CREDENTIALS,
     CLEAR_MODAL_MESSAGES,
     CLEAR_USER_UPDATE_MODAL,
-    CLEAR_REGISTER_GROUP_MODAL
+    CLEAR_REGISTER_GROUP_MODAL,
+    SET_GROUP_NAME
 } from '../actions/types';
 
 const initialState = {
     user: {},
+    usersGroup: "",
     userToken: "",
     loginErrorText: "",
     LOGGED_IN: false,
@@ -48,6 +50,11 @@ export default function(state=initialState, action) {
                 ...state,
                 loginErrorText: action.payload
             }
+        case SET_GROUP_NAME:
+            return {
+                ...state,
+                usersGroup: action.payload.organizationName
+            }
         
         case LOGOUT_USER: 
             return {
@@ -58,8 +65,8 @@ export default function(state=initialState, action) {
                 groupFailureMessage: "",
                 groupSuccessMessage: "",
                 groupMessage: "",
-                loginErrorText: ""
-
+                loginErrorText: "",
+                usersGroup: ""
             }
 
         case REGISTER_USER:

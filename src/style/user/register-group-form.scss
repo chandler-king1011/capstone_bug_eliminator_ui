@@ -1,0 +1,65 @@
+.group-form {
+    align-self: center;
+    height: 400px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: $black;
+    color: $white;
+    border-radius: 10px;
+
+    .group-form__title {
+        text-align: center;
+        width: 500px;
+        padding-bottom: 15px;
+        color: $white;
+        font-size: 2em;
+        font-family: $header;
+        border-bottom: 2px #F50022 solid;
+    }
+
+    .group-form__disclaimer {
+        width: 400px;
+        color: $red;
+        font-size: 1.2em;
+        font-family: $paragraph;
+    }
+
+    .group-form__input {
+        padding-left: 10px;
+        width: 400px;
+        height: 35px;
+        border: none;
+        border-radius: 25px;
+        background-color: #FCFCFC;
+        color: $black;
+        font-family: $paragraph;
+
+        &:focus {
+            outline: none;
+            background-color: $grey;
+            color: $white;
+        }
+    }
+
+    .group-form__button {
+        height: 50px;
+        width: 400px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.5em;
+        font-family: $paragraph;
+        color: #FCFCFC;
+        background-color: #3F3D3D;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        margin-bottom: 25px;
+
+        &:hover {
+            color: $silver;
+        }
+    }
+
+}

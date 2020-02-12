@@ -26,6 +26,9 @@ class SearchBugs extends Component {
               linkOne="/user-dashboard"
               linkOneName="Dashboard"
               logOut={() =>this.props.logout()}
+              user={this.props.user}
+              token={this.props.userToken}
+              usersGroup={this.props.usersGroup}
             />
             <SearchBugBar
               className="search-bugs__searchbar"
@@ -57,13 +60,14 @@ class SearchBugs extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user, userToken } = state.userReducer;
+  const { user, userToken, usersGroup } = state.userReducer;
   const { bugSearchBugs, noBugsMessage } = state.bugReducer;
   return {
     user,
     userToken,
     bugSearchBugs,
-    noBugsMessage
+    noBugsMessage,
+    usersGroup
   }
 }
 

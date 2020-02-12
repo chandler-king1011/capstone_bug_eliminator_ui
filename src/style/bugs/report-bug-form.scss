@@ -1,5 +1,4 @@
 .bug-form {
-    border: 1px solid $red;
     border-radius: 10px;
     background-color: $black;
     height: min(750px);
@@ -67,7 +66,7 @@
                 &:focus {
                     outline: none;
                     background-color: $grey;
-                    color: $silver
+                    color: $white;
                 }
 
 
