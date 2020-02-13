@@ -9,7 +9,7 @@ class Footer extends Component {
     return(
         <div className="footer">
             <a className="footer__title" onClick={() => history.push("/")}>Bug Eliminator</a>
-            <div className="footer__copyright">{"Copyright" + " " + moment().format('YYYY') + " " + "Chandler King" + " "  + "All rights reserved"}</div>
+            <div className="footer__copyright">{moment().format('YYYY')}</div>
         </div>
     )
 }

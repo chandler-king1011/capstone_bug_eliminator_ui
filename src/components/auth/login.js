@@ -36,7 +36,7 @@ class Login extends Component {
             </div>
             <div className="login-page__button-wrapper">
               <button onClick={() => history.push("/register")}>Sign Up</button>
-              <button>Recover Password</button>
+              <button onClick={() => history.push("/reset-password/request")}>Reset Password</button>
             </div>
           </div>
           <LoginForm handleLoginSubmit={this.handleLoginSubmit} loginErrorText={this.props.loginErrorText} />
