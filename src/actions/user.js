@@ -12,6 +12,11 @@ import {
     UPDATE_USER_ERROR,
     PASSWORD_UPDATED,
     PASSWORD_UPDATED_FAILED,
+    PASSWORD_RESET_EMAIL_SENT,
+    PASSWORD_RESET_EMAIL_FAILED,
+    RESET_PASSWORD_FAILED,
+    RESET_PASSWORD_SUCCESS,
+    CLEAR_RESET_REQUEST,
     LEAVE_GROUP,
     JOIN_GROUP,
     WRONG_GROUP_CREDENTIALS,
@@ -133,6 +138,65 @@ export function updateUserPassword(bodyData, token, userId) {
             } else if(response.data.status === 400) {
                 dispatch({
                     type: PASSWORD_UPDATED_FAILED,
+                    payload: response.data.message
+                })
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+}
+
+
+export function passwordResetRequest(email) {
+    return function(dispatch) {
+        axios.post("https://api-capstone-bug-tracker.herokuapp.com/users/reset-password/request", 
+        {"email": email})
+        .then(response => {
+            if (response.data.status === 200) {
+                dispatch({
+                    type: PASSWORD_RESET_EMAIL_SENT,
+                    payload: response.data.message
+                })
+            } else {
+                dispatch({
+                    type: PASSWORD_RESET_EMAIL_FAILED,
+                    payload: response.data.message
+                })
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+}
+
+export function clearResetPasswordRequest() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_RESET_REQUEST,
+            payload: ""
+        })
+    }
+}
+
+export function resetPassword(newPassword, token) {
+    return function(dispatch) {
+        axios({
+            method: "put",
+            url: "https://api-capstone-bug-tracker.herokuapp.com/users/reset-password/update",
+            data: {
+                "newPassword": newPassword,
+                "token": token
+            }
+        }).then(response => {
+            if (response.data.status === 200) {
+                dispatch({
+                    type: RESET_PASSWORD_SUCCESS,
+                    payload: response.data.message
+                })
+            } else {
+                dispatch({
+                    type: RESET_PASSWORD_FAILED,
                     payload: response.data.message
                 })
             }

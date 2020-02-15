@@ -8,6 +8,11 @@ import {
     UPDATE_USER_ERROR,
     PASSWORD_UPDATED,
     PASSWORD_UPDATED_FAILED,
+    PASSWORD_RESET_EMAIL_SENT,
+    PASSWORD_RESET_EMAIL_FAILED,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_FAILED,
+    CLEAR_RESET_REQUEST,
     LEAVE_GROUP,
     JOIN_GROUP,
     SUCCESSFULLY_REGISTERED_GROUP,
@@ -32,7 +37,9 @@ const initialState = {
     updateUserSuccessMessage: "",
     updateUserFailureMessage: "",
     registerGroupFailed: "",
-    registerGroupSuccess: ""
+    registerGroupSuccess: "",
+    passwordResetEmailSent: "",
+    passwordResetEmailFailed: ""
 }
 
 export default function(state=initialState, action) {
@@ -117,6 +124,39 @@ export default function(state=initialState, action) {
                 ...state,
                 updateUserSuccessMessage: "",
                 updateUserFailureMessage: ""
+            }
+        
+        case PASSWORD_RESET_EMAIL_SENT:
+            return {
+                ...state,
+                passwordResetEmailFailed: "",
+                passwordResetEmailSent: action.payload
+            }
+
+        case PASSWORD_RESET_EMAIL_FAILED:
+            return {
+                ...state,
+                passwordResetEmailSent: "",
+                passwordResetEmailFailed: action.payload
+            }
+        
+        case CLEAR_RESET_REQUEST:
+            return {
+                ...state,
+                passwordResetEmailSent: "",
+                passwordResetEmailFailed: ""
+            }
+
+        case RESET_PASSWORD_SUCCESS: 
+            console.log(action.payload);
+            return {
+                ...state
+            }
+
+        case RESET_PASSWORD_FAILED:
+            console.log(action.payload);
+            return {
+                ...state
             }
     
         case LEAVE_GROUP: 

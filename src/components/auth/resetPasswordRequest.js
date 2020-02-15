@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import * as actions from '../../actions';
+import history from '../../history';
 
 import Header from '../header';
 import Footer from '../footer';
@@ -18,6 +22,11 @@ class ResetPasswordRequest extends Component {
 }
 
 
+  componentWillMount() {
+    this.props.clearResetPasswordRequest();
+  }
+
+
   onChange(e) {
       this.setState({
           [e.target.name]: e.target.value
@@ -26,7 +35,7 @@ class ResetPasswordRequest extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(e);
+    this.props.passwordResetRequest(this.state.email);
   }
 
 
@@ -35,8 +44,16 @@ class ResetPasswordRequest extends Component {
         <div className="reset-password-wrapper">
           <Header linkOne="/" linkOneName="Login" linkTwo="/register" linkTwoName="Sign Up" />
           <div className="reset-password-form__wrapper">
+            {this.props.passwordResetEmailSent.length > 1 ?
+            <div className="reset-email__success">
+              <div className="reset-email__message">{this.props.passwordResetEmailSent}</div>
+              <button className="reset-email__login" onClick={() => history.push("/")}>Login</button>
+            </div> :
             <form onSubmit={this.onSubmit} className="reset-password-request">
                 {formTitle("reset-password-request__title", "Enter your email to reset your password")}
+                {this.props.passwordResetEmailFailed.length > 1 ? 
+                <div className="reset-email__failed">{this.props.passwordResetEmailFailed}</div>
+                : null}
                 <input 
                   className="reset-password-request___input"
                   type="email"
@@ -46,7 +63,7 @@ class ResetPasswordRequest extends Component {
                   placeholder="Enter Password" 
                 />
                 <button className="reset-password-request___button" type="submit">Reset Password</button>
-            </form>
+            </form> }
           </div>
           <Footer />
         </div>
@@ -54,4 +71,12 @@ class ResetPasswordRequest extends Component {
 }
 }
 
-export default ResetPasswordRequest;
+const mapStateToProps = (state) => {
+  const { passwordResetEmailSent, passwordResetEmailFailed } = state.userReducer;
+  return {
+    passwordResetEmailSent,
+    passwordResetEmailFailed
+  }
+}
+
+export default connect(mapStateToProps, actions)(ResetPasswordRequest);

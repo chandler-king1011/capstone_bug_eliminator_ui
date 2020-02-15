@@ -18,6 +18,7 @@ import history from "./history";
 import Login from "./components/auth/login";
 import SignUp from "./components/auth/signUp";
 import ResetPasswordRequest from './components/auth/resetPasswordRequest';
+import ResetPassword from './components/auth/resetPassword';
 import UserProfile from "./components/user/userProfile";
 import RegisterGroup from './components/user/registerGroup';
 import DashBoard from "./components/dashboard/dashboard";
@@ -42,6 +43,7 @@ function main() {
           <Route path="/" exact component={Login} />
           <Route path="/register"  component={SignUp} />
           <Route path="/reset-password/request" component={ResetPasswordRequest} />
+          <Route path="/password/reset/:token" component={ResetPassword} />
           <Route path="/user-dashboard" component={DashBoard} />
           <Route path="/organization-dashboard" component={AllBugsDash} />
           <Route path="/update-user" component={UserProfile} />
