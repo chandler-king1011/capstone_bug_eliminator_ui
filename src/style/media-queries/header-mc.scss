@@ -1,0 +1,18 @@
+@media (max-width: 615px) {
+
+.header {
+    grid-template-columns: 1fr 1fr;
+    .header_links {
+        justify-self: center;
+        .header_link {
+            font-size: 1.2em;
+        }
+    }
+    .header_title {
+        font-size: 2em;
+    }
+    .header__icon {
+        display: none;
+    }
+}
+}

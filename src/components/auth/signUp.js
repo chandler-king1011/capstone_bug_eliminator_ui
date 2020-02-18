@@ -36,7 +36,6 @@ class SignUp extends Component {
         <div className="signup">
           <Header linkOneName="Learn More" linkTwo="/" linkTwoName="Login" />
           <div className="signup__body-wrapper">
-            
             {
             this.props.userSuccessMessage.length < 1 ? 
             <SignUpForm handleFormSubmit={this.handleFormSubmit} userFailureMessage={this.props.userFailureMessage} /> :

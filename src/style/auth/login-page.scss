@@ -1,7 +1,13 @@
 .login-page {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .footer {
+        align-self: end;
+    }
 
     .login-page__content-wrapper{
-        height: 80vh;
         display: grid;
         grid-template-columns: 1fr 1fr;
         justify-items: center;
@@ -9,8 +15,7 @@
 
         .login-page__left-wrapper {
             height: 400px;
-            display: flex;
-            flex-direction: column;
+            display: grid;
             justify-content: space-between;
             align-items: center;
             
@@ -22,13 +27,14 @@
                 text-align: center;
             }
             .login-page__button-wrapper{
+                justify-self: center;
+                align-self: center;
                 height: 150px;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
+                display: grid;
                 justify-content: space-between;
 
                 button {
+                    justify-self: center;
                     height: 50px;
                     width: 200px;
                     border: none;

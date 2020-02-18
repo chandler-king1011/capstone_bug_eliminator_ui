@@ -1,0 +1,11 @@
+@media (max-width: 615px) {
+
+.signup {
+    grid-gap: 25px;
+    .signup__body-wrapper{
+        grid-template-columns: 1fr;
+        grid-gap: 25px;
+    }
+}
+
+}

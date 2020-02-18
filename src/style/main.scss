@@ -31,6 +31,16 @@
 @import './comments/comment-tag.scss';
 @import './comments/new-comment-form.scss';
 
+//media queries
+
+@import './media-queries/header-mc.scss';
+@import './media-queries/auth/login-page-mc.scss';
+@import './media-queries/auth/login-form-mc.scss';
+@import './media-queries/auth/signup-mc.scss';
+@import './media-queries/auth/signup-form-mc.scss';
+@import './media-queries/auth/signup-criteria-mc.scss';
+@import './media-queries/auth/reset-password-request-mc.scss';
+
 
 
 

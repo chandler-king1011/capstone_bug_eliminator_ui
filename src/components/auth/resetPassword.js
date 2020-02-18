@@ -131,7 +131,6 @@ class ResetPassword extends Component {
                 />
                 <button type="submit" className="reset-password__form-button">Reset Password</button>
             </form>}
-  
             <Footer />
         </div>
     )

@@ -1,0 +1,16 @@
+@media (max-width: 615px) {
+    .login-page {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 25px;
+        .login-page__content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 25px;
+
+        }
+
+    }
+
+
+}

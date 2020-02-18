@@ -1,9 +1,16 @@
 .signup {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .footer {
+        align-self: end;
+    }
     .signup__body-wrapper{
-        height: 80vh;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        align-items: center;
+
+
 
         .signup-form {
             align-self: center;
