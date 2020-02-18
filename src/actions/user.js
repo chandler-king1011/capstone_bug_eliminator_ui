@@ -8,6 +8,7 @@ import {
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
+    CLEAR_REGISTER_MESSAGES,
     UPDATE_USER_DATA,
     UPDATE_USER_ERROR,
     PASSWORD_UPDATED,
@@ -16,6 +17,7 @@ import {
     PASSWORD_RESET_EMAIL_FAILED,
     RESET_PASSWORD_FAILED,
     RESET_PASSWORD_SUCCESS,
+    CLEAR_RESET_PASSWORD,
     CLEAR_RESET_REQUEST,
     LEAVE_GROUP,
     JOIN_GROUP,
@@ -206,6 +208,15 @@ export function resetPassword(newPassword, token) {
     }
 }
 
+export function clearResetPassword() {
+    return function(dispatch){
+        dispatch({
+            type: CLEAR_RESET_PASSWORD,
+            payload: ""
+        })
+    }
+}
+
 export function register(userObject) {
     return function(dispatch) {
     axios.post("https://api-capstone-bug-tracker.herokuapp.com/users/register", userObject)
@@ -246,6 +257,15 @@ export function register(userObject) {
         });
     });
  }
+}
+
+export function clearRegisterMessages() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_REGISTER_MESSAGES,
+            payload: ""
+        })
+    }
 }
 
 export function joinGroup(body, token) {

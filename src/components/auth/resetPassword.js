@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
+import history from '../../history';
 
 import Header from '../header';
 import Footer from '../footer';
@@ -23,6 +24,7 @@ class ResetPassword extends Component {
 
   this.onChange = this.onChange.bind(this);
   this.onSubmit = this.onSubmit.bind(this);
+  this.checkPasswords = this.checkPasswords.bind(this);
 }
 
 
@@ -47,13 +49,33 @@ class ResetPassword extends Component {
     }).catch(error => {
         console.log(error);
     })
+
+    this.props.clearResetPassword();
   }
 
   onChange(e) {
       this.setState({
           [e.target.name]: e.target.value
       })
+      setTimeout(() => {
+      this.checkPasswords();
+    }, 1000)
+
+    this.props.clearResetPassword();
   }
+
+  checkPasswords() {
+    if (this.state.newPassword === this.state.confirmNewPassword) {
+        this.setState({
+          mismatchPasswords: false
+        })
+    } else {
+        this.setState({
+          mismatchPasswords: true
+        })
+    }
+  }
+  
 
   onSubmit(e) {
       e.preventDefault();
@@ -74,11 +96,23 @@ class ResetPassword extends Component {
     return(
         <div className="reset-password">
             <Header />
-            {!this.state.validToken ? 
-            <div className="reset-password__invalid-token">{this.state.invalidTokenMessage}</div> :
-            null}
+            {this.props.passwordResetSuccess.length > 1 ?
+            <div className="reset-password__success">
+                <div className="reset-password__success-message">{this.props.passwordResetSuccess}</div>
+                <button className="reset-password__success-login" onClick={() => history.push("/")}>Login</button>
+            </div>:
             <form className="reset-password__form" onSubmit={this.onSubmit}>
                 {formTitle("reset-password__form-title", "Reset Password")}
+                {!this.state.validToken ? 
+                <div className="reset-password__invalid-token reset-password__form-password-mismatch">{this.state.invalidTokenMessage}</div> 
+                : null }
+                {this.state.mismatchPasswords ?
+                 <div className="reset-password__form-password-mismatch">Passwords do not match</div> :
+                 null}
+                 {this.props.passwordResetFailed.length > 1 ? 
+                 <div className="reset-password__form-password-mismatch">{this.props.passwordResetFailed}</div> :
+                 null
+                 }
                 <input 
                     type="password" 
                     value={this.state.newPassword} 
@@ -96,11 +130,20 @@ class ResetPassword extends Component {
                     className="reset-password__form-input"
                 />
                 <button type="submit" className="reset-password__form-button">Reset Password</button>
-            </form>
+            </form>}
+  
             <Footer />
         </div>
     )
 }
 }
 
-export default connect(null, actions)(ResetPassword);
+const mapStateToProps = (state) => {
+    const {passwordResetSuccess, passwordResetFailed} = state.userReducer;
+    return {
+        passwordResetSuccess,
+        passwordResetFailed
+    }
+}
+
+export default connect(mapStateToProps, actions)(ResetPassword);

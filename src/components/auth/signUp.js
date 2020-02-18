@@ -24,6 +24,7 @@ class SignUp extends Component {
   }
 
   componentWillMount() {
+    this.props.clearRegisterMessages();
     if (this.props.userToken != "") {
       history.push('/user-dashboard');
     }

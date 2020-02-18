@@ -4,6 +4,7 @@ import {
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
+    CLEAR_REGISTER_MESSAGES,
     UPDATE_USER_DATA,
     UPDATE_USER_ERROR,
     PASSWORD_UPDATED,
@@ -12,6 +13,7 @@ import {
     PASSWORD_RESET_EMAIL_FAILED,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAILED,
+    CLEAR_RESET_PASSWORD,
     CLEAR_RESET_REQUEST,
     LEAVE_GROUP,
     JOIN_GROUP,
@@ -39,7 +41,9 @@ const initialState = {
     registerGroupFailed: "",
     registerGroupSuccess: "",
     passwordResetEmailSent: "",
-    passwordResetEmailFailed: ""
+    passwordResetEmailFailed: "",
+    passwordResetSuccess: "",
+    passwordResetFailed: ""
 }
 
 export default function(state=initialState, action) {
@@ -88,6 +92,13 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 userFailureMessage: action.payload.userFailureMessage
+            }
+
+        case CLEAR_REGISTER_MESSAGES: 
+            return {
+                ...state,
+                userFailureMessage: "",
+                userSuccessMessage: ""
             }
 
         case UPDATE_USER_DATA: 
@@ -148,15 +159,23 @@ export default function(state=initialState, action) {
             }
 
         case RESET_PASSWORD_SUCCESS: 
-            console.log(action.payload);
+            
             return {
-                ...state
+                ...state,
+                passwordResetSuccess: action.payload
             }
 
         case RESET_PASSWORD_FAILED:
-            console.log(action.payload);
             return {
-                ...state
+                ...state,
+                passwordResetFailed: action.payload
+            }
+
+        case CLEAR_RESET_PASSWORD: 
+            return {
+                ...state,
+                passwordResetSuccess: "",
+                passwordResetFailed: ""
             }
     
         case LEAVE_GROUP: 
