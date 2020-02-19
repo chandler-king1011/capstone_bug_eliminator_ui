@@ -20,6 +20,11 @@
         border-bottom: 2px #F50022 solid;
     }
 
+    .group-form__mismatch {
+        color: $red;
+        font-size: 1.2em;
+    }
+
     .group-form__disclaimer {
         width: 400px;
         color: $red;

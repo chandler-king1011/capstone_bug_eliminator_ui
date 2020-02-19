@@ -1,0 +1,33 @@
+@media (max-width:615px) {
+    .bug-form {
+        height: 100%;
+        width: 90vw;
+
+        .bug-form__input-group {
+            flex-direction: column;
+
+            .bug-form__input {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                width: 200px;
+            }
+        }
+
+        .bug-form__dropzones {
+            margin-top: 25px;
+            height: 250px;
+            width: 200px;
+            grid-template-columns: 1fr;
+            align-self: center;
+        }
+
+        .bug-form__button {
+            width: 200px;
+            align-self: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+
+    }
+}

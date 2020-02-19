@@ -33,13 +33,29 @@
 
 //media queries
 
-@import './media-queries/header-mc.scss';
-@import './media-queries/auth/login-page-mc.scss';
-@import './media-queries/auth/login-form-mc.scss';
-@import './media-queries/auth/signup-mc.scss';
-@import './media-queries/auth/signup-form-mc.scss';
-@import './media-queries/auth/signup-criteria-mc.scss';
-@import './media-queries/auth/reset-password-request-mc.scss';
+@import './media-queries/header-mq.scss';
+@import './media-queries/auth/login-page-mq.scss';
+@import './media-queries/auth/login-form-mq.scss';
+@import './media-queries/auth/signup-mq.scss';
+@import './media-queries/auth/signup-form-mq.scss';
+@import './media-queries/auth/signup-criteria-mq.scss';
+@import './media-queries/auth/reset-password-request-mq.scss';
+@import './media-queries/auth/join-group-modal-mq.scss';
+@import './media-queries/dashboard/dashboard-header-mq.scss';
+@import './media-queries/dashboard/dashboard-navbar-mq.scss';
+@import './media-queries/bugs/bug-header-mq.scss';
+@import './media-queries/bugs/bug-tag-mq.scss';
+@import './media-queries/bugs/bug-sorter-mq.scss';
+@import './media-queries/bugs/report-bug-mq.scss';
+@import './media-queries/bugs/report-bug-form-mq.scss';
+@import './media-queries/bugs/bug-success-message-mq.scss';
+@import './media-queries/bugs/bug-detail-mq.scss';
+@import './media-queries/bugs/bug-sidebar-mq.scss';
+@import './media-queries/user/register-group-mq.scss';
+@import './media-queries/user/register-group-form-mq.scss';
+@import './media-queries/user/update-user-password-mq.scss';
+@import './media-queries/user/user-update-form-mq.scss';
+
 
 
 

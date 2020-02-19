@@ -1,0 +1,10 @@
+@media (max-width: 615px) {
+    .bug-tag {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 80vw;
+
+        .bug-tag__id {
+            display: none;
+        }
+    }
+}

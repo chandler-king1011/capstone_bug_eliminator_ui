@@ -1,6 +1,7 @@
 import { 
     login,
     logout,
+    clearLoginFailed,
     register,
     clearRegisterMessages,
     updateUser,
@@ -40,6 +41,7 @@ import {
 export {
     login,
     logout,
+    clearLoginFailed,
     register,
     clearRegisterMessages,
     updateUser,

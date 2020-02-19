@@ -1,0 +1,11 @@
+@media (max-width: 615px) {
+    .dashboard__navbar {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        .navbar-link {
+            border-bottom: 1px solid $silver;
+    
+        }
+    }
+}

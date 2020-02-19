@@ -1,0 +1,12 @@
+@media (max-width: 615px) {
+.bug-header {
+    width: 80vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .bug-header__id {
+        display: none;
+    }
+}
+}
+
+

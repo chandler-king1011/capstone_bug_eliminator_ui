@@ -20,6 +20,7 @@ class LoginForm extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+        this.props.clearError();
     }
 
     onSubmit(e) {

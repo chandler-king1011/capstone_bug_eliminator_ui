@@ -1,6 +1,7 @@
 import { 
     LOGIN_USER,
     LOGOUT_USER,
+    CLEAR_LOGIN_FAILED,
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
@@ -61,6 +62,13 @@ export default function(state=initialState, action) {
                 ...state,
                 loginErrorText: action.payload
             }
+
+        case CLEAR_LOGIN_FAILED: 
+            return {
+                ...state,
+                loginErrorText: ""
+            }
+            
         case SET_GROUP_NAME:
             return {
                 ...state,

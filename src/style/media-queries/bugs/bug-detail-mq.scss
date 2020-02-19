@@ -1,0 +1,18 @@
+@media(max-width:615px) {
+    .bug-detail__body-wrapper {
+        flex-direction: column;
+        .bug-detail__description-comments{
+        .bug-detail__description {
+            justify-self: center;
+            width: 90vw;
+        }
+    }
+
+    .bug-detail__pictures {
+        img {
+            width: 300px;
+            
+        }
+    }
+    }
+}

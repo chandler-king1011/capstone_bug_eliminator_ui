@@ -1,0 +1,25 @@
+@media (max-width:615px) {
+    .sidebar-wrapper {
+        min-height: 100px;
+
+        .sidebar {
+            height:700px;
+            width: 100vw;
+
+            .sidebar__details {
+                li{
+                    .sidebar__label {
+                        justify-self: center;
+                        
+    
+                    }
+                    .sidebar__value {
+                        justify-self: center;
+                    
+                        
+                    }
+                }
+            }
+        }
+    }
+}

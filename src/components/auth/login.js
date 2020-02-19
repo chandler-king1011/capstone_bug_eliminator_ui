@@ -20,6 +20,7 @@ class Login extends Component {
   }
 
   componentWillMount() {
+    this.props.clearLoginFailed();
     if (this.props.userToken != "") {
       history.push('/user-dashboard');
     }
@@ -39,7 +40,11 @@ class Login extends Component {
               <button onClick={() => history.push("/reset-password/request")}>Reset Password</button>
             </div>
           </div>
-          <LoginForm handleLoginSubmit={this.handleLoginSubmit} loginErrorText={this.props.loginErrorText} />
+          <LoginForm 
+            handleLoginSubmit={this.handleLoginSubmit}
+            loginErrorText={this.props.loginErrorText}
+            clearError={this.props.clearLoginFailed} 
+          />
         </div>
         <Footer />
       </div>

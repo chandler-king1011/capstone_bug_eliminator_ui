@@ -5,6 +5,7 @@ import history from '../history';
 import { 
     LOGIN_USER,
     LOGOUT_USER,
+    CLEAR_LOGIN_FAILED,
     WRONG_LOGIN_CREDENTIALS,
     REGISTER_USER, 
     REGISTER_FAILED,
@@ -60,6 +61,15 @@ export function login(userCredentials) {
         });
     });
  }
+}
+
+export function clearLoginFailed() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_LOGIN_FAILED,
+            payload: ""
+        })
+    }
 }
 
 export function getGroupName(groupId, token) {

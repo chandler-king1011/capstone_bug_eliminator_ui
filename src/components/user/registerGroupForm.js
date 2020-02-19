@@ -20,7 +20,9 @@ class RegisterGroupForm extends Component {
 
   onChange(e) {
       this.setState({
-          [e.target.name]: e.target.value
+          [e.target.name]: e.target.value,
+          passwordMismatch: ""
+
       })
   }
 
@@ -41,7 +43,6 @@ class RegisterGroupForm extends Component {
         this.setState({
             passwordMismatch: "Passwords do not match."
         })
-        console.log(this.state.passwordMismatch);
     }
   }
 
@@ -51,6 +52,9 @@ class RegisterGroupForm extends Component {
         <form className={`group-form ${className}`} onSubmit={this.onSubmit}>
             {FormTitle("group-form__title", "Create A Group")}
             <div className="group-form__disclaimer">*Creating a group will make you an admin of your group, and remove you from your current group.</div>
+            {this.state.passwordMismatch.length > 1 ?
+            <div className="group-form__mismatch">{this.state.passwordMismatch}</div>:
+            null}
             <input 
               type="text"
               className="group-form__input"
