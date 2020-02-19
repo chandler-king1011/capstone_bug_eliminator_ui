@@ -59,6 +59,11 @@ class UserUpdateForm extends Component {
         <input  className="update-form__input" onChange={this.onChange} value={this.state.users_first_name} placeholder={"First Name"} type="text" name="users_first_name"/>
         <input className="update-form__input" onChange={this.onChange} value={this.state.users_last_name} placeholder={"Last Name"} type="text" name="users_last_name"/>
         <input className="update-form__input" onChange={this.onChange} value={this.state.users_email} placeholder={"Email"} type="email" name="users_email"/>
+        {this.state.users_role=== "Admin" ?
+        <select className="update-form__input select disabled" disabled>
+            <option className="update-form__option" value="Admin">Admin</option>
+        </select>
+        :
         <select 
                 className="update-form__input select"
                 type="role" 
@@ -69,7 +74,7 @@ class UserUpdateForm extends Component {
             >
                 <option className="update-form__option" value="Tester">Tester</option>
                 <option className="update-form__option" value="Developer">Developer</option>
-            </select>    
+            </select> } 
             <button className="update-form__button" type="submit">Save Changes</button>
             <button onClick={this.forgetChanges} className="update-form__button" type="reset">Forget Changes</button>
     </form>

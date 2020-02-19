@@ -41,6 +41,10 @@
         }
     }
 
+    .disabled {
+        background-color: $grey;
+    }
+
     .update-form__button {
         justify-self: center;
         height: 50px;

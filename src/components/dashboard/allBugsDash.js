@@ -67,7 +67,7 @@ componentWillMount() {
     return(
         <div>
           <DashboardHeader
-            pageTitle="Dashboard"
+            pageTitle="Group Dashboard"
             className="dashboard__header"   
             linkOneName="My Profile"
             linkOne="/update-user"
