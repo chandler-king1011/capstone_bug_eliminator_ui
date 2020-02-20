@@ -5,10 +5,11 @@
   
     .bug-detail__body-wrapper {
         flex-direction: column;
+        align-items: center;
         .bug-detail__description-comments{
         .bug-detail__description {
             justify-self: center;
-            width: 90vw;
+            width: 100vw;
         }
     }
 

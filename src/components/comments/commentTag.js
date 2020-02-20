@@ -39,7 +39,7 @@ class CommentTag extends Component {
                 : null} 
                 <div className="comment-tag__date">{comments_created_date.slice(0, 10)}</div>
             </div>
-            <div className="comment-tag__text">{comments_text}</div>
+            <p className="comment-tag__text">{comments_text}</p>
         </div>
     )
 }

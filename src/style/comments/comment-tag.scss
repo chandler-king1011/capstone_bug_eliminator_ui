@@ -4,7 +4,6 @@
 }
 .comment-tag {
     margin-top: 25px;
-    width: 100%;
     background-color: $grey;
     color: $white;
     border-radius: 5px;
@@ -38,12 +37,13 @@
     .comment-tag__user{
         width: 200px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
 
     }
 
         .comment-tag__text{
-            width: 38vw;
+            word-wrap: break-word;
+            width: 800px;
             padding: 20px;
         }
 

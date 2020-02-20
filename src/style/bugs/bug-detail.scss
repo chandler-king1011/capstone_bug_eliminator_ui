@@ -4,6 +4,7 @@
         justify-content: space-between;
 
         .bug-detail__description {
+            word-wrap: break-word;
             width: 40vw;
             min-height: 50vh;
             margin-top: 20px;

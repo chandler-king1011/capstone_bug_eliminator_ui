@@ -4,7 +4,11 @@
         width: 90vw;
 
         .bug-form__input-group {
+            justify-self: center;
+            align-self: center;
+            justify-content: center;
             flex-direction: column;
+            width: 100vw;
 
             .bug-form__input {
                 margin-top: 10px;
