@@ -94,7 +94,7 @@ class DashBoard extends Component {
   render() {
     return(
       
-        <div>
+        <div className="dashboard">
           <DashboardHeader
             pageTitle="Dashboard"
             className="dashboard__header"   

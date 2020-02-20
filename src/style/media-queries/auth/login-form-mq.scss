@@ -1,12 +1,20 @@
 @media (max-width: 615px) {
-
     .login-form {
         width: 90vw;
-        
+
         .login-form__title-wrapper {
             .login-form__title {
                 width: 90vw;
             }
         }
+    .login-form__form {
+        width: 90vw;
+        
+
+        .login-form__input {
+            justify-self: center;
+            width: 200px; 
+        }
+}
 }
 }

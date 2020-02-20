@@ -1,4 +1,8 @@
 @media(max-width:615px) {
+
+    .bug-detail {
+        width: 100vw;
+  
     .bug-detail__body-wrapper {
         flex-direction: column;
         .bug-detail__description-comments{
@@ -15,4 +19,5 @@
         }
     }
     }
+}
 }

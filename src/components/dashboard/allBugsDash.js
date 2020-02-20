@@ -69,7 +69,7 @@ componentWillMount() {
 
   render() {
     return(
-        <div>
+        <div className="dashboard">
           <DashboardHeader
             pageTitle="Group Dashboard"
             className="dashboard__header"   

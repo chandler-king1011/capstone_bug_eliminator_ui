@@ -60,7 +60,7 @@ class ResetPasswordRequest extends Component {
                   name="email" 
                   value={this.state.email} 
                   onChange={this.onChange} 
-                  placeholder="Enter Password" 
+                  placeholder="Enter Email" 
                 />
                 <button className="reset-password-request___button" type="submit">Reset Password</button>
             </form> }

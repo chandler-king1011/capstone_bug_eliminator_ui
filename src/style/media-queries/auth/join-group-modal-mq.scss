@@ -1,8 +1,20 @@
 @media (max-width: 615px) {
+
+    .ReactModal__Content {
     .join-group {
         width: 90vw;
     }
     .join-group-form {
         width: 90vw;
+
+        .join-group-form__input {
+            width: 200px;
+        }
+
+        .join-group-form__button {
+            width: 200px;
+        }
     }
+
+  }
 }
