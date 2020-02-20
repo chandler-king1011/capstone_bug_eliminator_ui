@@ -34,6 +34,7 @@ const store = createStore(reducers, compose(applyMiddleware(...middleware), wind
 const persistor = persistStore(store);
 
 
+
 function main() {
   ReactDOM.render(
     <Provider store={store}>
@@ -44,7 +45,7 @@ function main() {
           <Route path="/register"  component={SignUp} />
           <Route path="/reset-password/request" component={ResetPasswordRequest} />
           <Route path="/password/reset/:token" component={ResetPassword} />
-          <Route path="/user-dashboard" component={DashBoard} />
+          <Route path="/user-dashboard" component={DashBoard}/>
           <Route path="/organization-dashboard" component={AllBugsDash} />
           <Route path="/update-user" component={UserProfile} />
           <Route path="/register-group" component={RegisterGroup} />

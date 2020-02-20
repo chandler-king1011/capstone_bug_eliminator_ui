@@ -53,13 +53,17 @@ closeModal() {
 }
 
 componentWillMount() {
-  this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
-  this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
-  if (this.props.user.users_organization_id === null) {
-    return;
-} else {
-    this.props.getGroupName(this.props.user.users_organization_id, this.props.userToken);
-}
+  if (!this.props.LOGGED_IN) {
+    history.push("/");
+  } else {
+      this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
+      this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
+      if (this.props.user.users_organization_id === null) {
+        return;
+      } else {
+        this.props.getGroupName(this.props.user.users_organization_id, this.props.userToken);
+      }
+  }
 }
 
 
@@ -130,7 +134,7 @@ componentWillMount() {
 }
 
 const mapStateToProps = (state) => {
-  const { user, userToken, groupSuccessMessage, groupFailureMessage, usersGroup} = state.userReducer;
+  const { user, userToken, groupSuccessMessage, groupFailureMessage, usersGroup, LOGGED_IN} = state.userReducer;
   const { organizationBugs, userBugs } = state.bugReducer;
   return {
     userBugs,
@@ -139,7 +143,8 @@ const mapStateToProps = (state) => {
     userToken,
     user,
     groupSuccessMessage,
-    groupFailureMessage
+    groupFailureMessage,
+    LOGGED_IN
   }
 }
 export default connect(mapStateToProps, actions)(AllBugsDash)

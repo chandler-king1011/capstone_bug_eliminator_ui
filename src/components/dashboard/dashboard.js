@@ -41,14 +41,18 @@ class DashBoard extends Component {
 }
 
   componentWillMount() {
-    this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
-    this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
-    if (this.props.user.users_organization_id === null) {
-      return;
-  } else {
-      this.props.getGroupName(this.props.user.users_organization_id, this.props.userToken);
+    if (!this.props.LOGGED_IN) {
+      history.push("/")
+    } else {
+      this.props.fetchUserBugs(this.props.user.users_id, this.props.userToken);
+      this.props.fetchOrganizationBugs(this.props.user.users_organization_id, this.props.userToken);
+      if (this.props.user.users_organization_id === null) {
+        return;
+      } else {
+        this.props.getGroupName(this.props.user.users_organization_id, this.props.userToken);
+    }
   }
-  }
+}
 
 
   openModal() {
@@ -89,6 +93,7 @@ class DashBoard extends Component {
 
   render() {
     return(
+      
         <div>
           <DashboardHeader
             pageTitle="Dashboard"
@@ -140,15 +145,14 @@ class DashBoard extends Component {
               failureMessage={this.props.groupFailureMessage}
               closeModal={this.closeModal}
             />
-
-        </Modal>
-        </div>
+        </Modal> 
+      </div>
     )
 }
 }
 
 const mapStateToProps = (state) => {
-  const { user, userToken, groupSuccessMessage, groupFailureMessage, usersGroup } = state.userReducer;
+  const { user, userToken, groupSuccessMessage, groupFailureMessage, usersGroup, LOGGED_IN} = state.userReducer;
   const { userBugs, organizationBugs } = state.bugReducer;
   return {
     user,
@@ -157,7 +161,8 @@ const mapStateToProps = (state) => {
     userBugs,
     organizationBugs,
     groupSuccessMessage,
-    groupFailureMessage
+    groupFailureMessage,
+    LOGGED_IN
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
+import history from '../../history';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
 import ReportBugForm from './reportBugForm';
@@ -13,6 +14,15 @@ class ReportBug extends Component {
   constructor() {
   super();
 }
+
+
+  componentWillMount() {
+    if (!this.props.LOGGED_IN) {
+      history.push("/");
+    }
+  }
+
+
   render() {
     return(
         <div className="report-bug">
@@ -49,14 +59,15 @@ class ReportBug extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {user, userToken, usersGroup } = state.userReducer;
+    const {user, userToken, usersGroup, LOGGED_IN } = state.userReducer;
     const { reportBugMessage, reportBugError } = state.bugReducer;
     return {
       user,
       userToken,
       reportBugMessage,
       reportBugError,
-      usersGroup
+      usersGroup,
+      LOGGED_IN
     }
 }
 

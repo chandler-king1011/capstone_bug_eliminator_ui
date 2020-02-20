@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as actions from '../../actions';
+import history from '../../history';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
 import UserUpdateForm from './userUpdateForm';
@@ -37,6 +38,12 @@ class UserProfile extends Component {
   this.openModal=this.openModal.bind(this);
   this.closeModal=this.closeModal.bind(this);
 }
+
+  componentWillMount() {
+    if(!this.props.LOGGED_IN) {
+      history.push("/");
+    }
+  }
 
 
   openModal() {
@@ -98,13 +105,14 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {user, userToken, updateUserSuccessMessage, updateUserFailureMessage, usersGroup} = state.userReducer;
+    const {user, userToken, updateUserSuccessMessage, updateUserFailureMessage, usersGroup, LOGGED_IN} = state.userReducer;
     return {
         user,
         userToken,
         usersGroup,
         updateUserSuccessMessage,
-        updateUserFailureMessage
+        updateUserFailureMessage,
+        LOGGED_IN
     }
 }
 

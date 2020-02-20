@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as actions from '../../actions';
+import history from '../../history';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
 import RegisterGroupForm from './registerGroupForm';
@@ -54,7 +55,11 @@ class RegisterGroup extends Component {
   }
 
   componentWillMount() {
+      if (!this.props.LOGGED_IN) {
+        history.push("/");
+      } else {
       this.props.clearRegisterGroupModal();
+    }
   }
 
   render() {
@@ -96,13 +101,14 @@ class RegisterGroup extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { user, userToken, registerGroupSuccess, registerGroupFailed, usersGroup } = state.userReducer;
+    const { user, userToken, registerGroupSuccess, registerGroupFailed, usersGroup, LOGGED_IN } = state.userReducer;
     return {
         user,
         usersGroup,
         userToken,
         registerGroupSuccess,
-        registerGroupFailed
+        registerGroupFailed,
+        LOGGED_IN 
     }
 }
 

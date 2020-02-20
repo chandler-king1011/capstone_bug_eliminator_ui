@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
+import history from '../../history';
+
 import DashboardHeader from '../dashboard/dashboardHeader';
 import DashboardBugHeader from '../dashboard/dashboardBugHeader';
 import SearchBugBar from './searchBugBar';
@@ -12,6 +14,13 @@ class SearchBugs extends Component {
   super();
 
 }
+
+ componentWillMount() {
+  if(!this.props.LOGGED_IN) {
+    history.push("/");
+  }
+ }
+
 
  componentWillUnmount() {
    this.props.clearSearchBugs();
@@ -60,14 +69,15 @@ class SearchBugs extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user, userToken, usersGroup } = state.userReducer;
+  const { user, userToken, usersGroup, LOGGED_IN } = state.userReducer;
   const { bugSearchBugs, noBugsMessage } = state.bugReducer;
   return {
     user,
     userToken,
     bugSearchBugs,
     noBugsMessage,
-    usersGroup
+    usersGroup,
+    LOGGED_IN
   }
 }
 

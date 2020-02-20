@@ -18,6 +18,10 @@ class NewComment extends Component {
   onSubmit(e) {
       e.preventDefault();
       this.props.onSubmit(this.state.commentText);
+
+      this.setState({
+        commentText: ""
+      });
   }
   
   onChange(e) {

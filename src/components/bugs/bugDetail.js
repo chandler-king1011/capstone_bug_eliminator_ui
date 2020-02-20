@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import * as actions from '../../actions';
+import history from '../../history';
 
 import DashboardHeader from '../dashboard/dashboardHeader';
 import BugDetailHeader from './bugDetailHeader';
@@ -20,8 +21,12 @@ class BugDetail extends Component {
   }
 
   componentWillMount() {
+      if (!this.props.LOGGED_IN) {
+        history.push("/");
+      } else {
       this.props.fetchCurrentBug(this.props.match.params.slug, this.props.userToken);
       this.props.fetchComments(this.props.match.params.slug, this.props.userToken);
+    }
   }
 
   componentWillUnmount() {
@@ -92,7 +97,7 @@ class BugDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { userToken, user, usersGroup } = state.userReducer;
+    const { userToken, user, usersGroup, LOGGED_IN } = state.userReducer;
     const { currentBug } = state.bugReducer;
     const { currentBugComments } = state.commentReducer;
     return {
@@ -100,7 +105,8 @@ const mapStateToProps = (state) => {
         currentBugComments,
         userToken,
         user,
-        usersGroup
+        usersGroup,
+        LOGGED_IN
     }
 }
 
