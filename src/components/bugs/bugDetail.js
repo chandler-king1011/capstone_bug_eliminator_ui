@@ -83,13 +83,13 @@ class BugDetail extends Component {
                         onSubmit={this.handleNewCommentSubmit}
                     />
                     </div>
-
+                    <div className="bug-detail__pictures">
+                        <img src={this.props.currentBug.bugs_image_one} />
+                        <img src={this.props.currentBug.bugs_image_two} />
+                    </div>
 
                 </div>
-                <div className="bug-detail__pictures">
-                    <img src={this.props.currentBug.bugs_image_one} />
-                    <img src={this.props.currentBug.bugs_image_two} />
-                </div>
+
             </div>
         </div>
     )

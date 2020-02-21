@@ -4,8 +4,16 @@
         width: 100vw;
   
     .bug-detail__body-wrapper {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         align-items: center;
+
+        .sidebar-wrapper {
+            width: 100vw;
+
+            .bug-detail__sidebar {
+                width: 200px;
+            }
+        }
         .bug-detail__description-comments{
         .bug-detail__description {
             justify-self: center;
@@ -16,7 +24,7 @@
     .bug-detail__pictures {
         width: auto;
         img {
-            width: 300px;
+            width: 80vw;
             
         }
     }
