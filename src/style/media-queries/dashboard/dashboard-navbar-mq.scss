@@ -5,6 +5,7 @@
         display: grid;
         grid-template-columns: 1fr;
         .navbar-link {
+            width: auto;
             border-bottom: 1px solid $silver;
     
         }

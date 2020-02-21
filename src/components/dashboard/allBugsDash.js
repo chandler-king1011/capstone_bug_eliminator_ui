@@ -124,6 +124,7 @@ componentWillMount() {
               successMessage={this.props.groupSuccessMessage}
               failureMessage={this.props.groupFailureMessage}
               closeModal={this.closeModal}
+              clearModalMessages={this.props.clearModalMessages}
             />
 
         </Modal>

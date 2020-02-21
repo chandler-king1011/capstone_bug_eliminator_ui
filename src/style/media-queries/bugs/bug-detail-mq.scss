@@ -9,11 +9,12 @@
         .bug-detail__description-comments{
         .bug-detail__description {
             justify-self: center;
-            width: 100vw;
+            width: auto;
         }
     }
 
     .bug-detail__pictures {
+        width: auto;
         img {
             width: 300px;
             

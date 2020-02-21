@@ -3,9 +3,20 @@
         width: 100vw;
     }
 
-    .comment-tag {
-        
+    .comment-tag { 
         justify-self: center;
         width: 100vw;
+        margin-right: 0px;
+        font-size: 1em;
+
+        .comment-tag__user {
+            width: 100px;
+            justify-content: space-between;
+        }
+
+
+        .comment-tag__text {
+            width: auto;
+        }
     }
 }

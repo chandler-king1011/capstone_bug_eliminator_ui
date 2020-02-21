@@ -3,6 +3,20 @@
     .ReactModal__Content {
     .join-group {
         width: 90vw;
+
+        .join-group__success {
+            .join-group__success-message {
+                font-size: 1em;
+            }
+        
+            .join-group__success-button {
+                width: 200px;
+            }
+        }
+    }
+
+    .join-group__failure-message {
+        font-size: 0.8em;
     }
     .join-group-form {
         width: 90vw;
@@ -12,8 +26,12 @@
         }
 
         .join-group-form__button {
+            height: 35px;
             width: 200px;
         }
+    }
+    .join-group-form__register-wrapper {
+        font-size: 0.6em;
     }
 
   }

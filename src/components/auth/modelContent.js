@@ -21,6 +21,8 @@ class ModalContent extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+
+    this.props.clearModalMessages();
   }
 
   onSubmit = (e)  => {
