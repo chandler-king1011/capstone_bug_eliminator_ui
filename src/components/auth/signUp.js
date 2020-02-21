@@ -34,7 +34,7 @@ class SignUp extends Component {
   render() {
     return(
         <div className="signup">
-          <Header linkOneName="Learn More" linkTwo="/" linkTwoName="Login" />
+          <Header linkTwoName="Forgot Password" linkTwo="/reset-password/request" linkOne="/" linkOneName="Login" />
           <div className="signup__body-wrapper">
             {
             this.props.userSuccessMessage.length < 1 ? 

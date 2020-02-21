@@ -29,7 +29,7 @@ class Login extends Component {
   render() {
     return (
       <div className='login-page'>
-        <Header linkOneName="Learn More" linkTwo="/register" linkTwoName="Not registered? Sign Up!" />
+        <Header linkTwoName="Forgot Password" linkTwo="/reset-password/request" linkOne="/register" linkOneName="Not registered? Sign Up!" />
         <div className="login-page__content-wrapper">
           <div className="login-page__left-wrapper">
             <div className="login-page__intro">
